@@ -1,0 +1,14 @@
+# Node
+web/.next/
+web/node_modules/
+web/.env.local
+web/.vercel/
+
+# Python
+.venv/
+__pycache__/
+api/.env
+api/*.pyc
+
+# OS
+.DS_Store
