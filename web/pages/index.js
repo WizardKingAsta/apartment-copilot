@@ -4,16 +4,37 @@ import { useState} from "react"
 export default function Home(){
     //Holds current input
     const [value, setValue] = useState("");
+    //Keep track of loading value to grey out submit button
+    const [isLoading, setIsLoading] = useState(false);
+
+    //Keep track of if message is being used
+    const [message, setMessage] = useState(null);
+    const [messageInfo, setMessageInfo] = useState('');
 
     //send url to back end for storage
     async function sendSubmission(url){
         //Run the back end on its own and enter the right url + endpoint
-       
+        setIsLoading(true)
+        try{
         const response = await fetch("/api/link", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({url})
         });
+        setMessage("Success: Link has been posted!")
+        setMessageInfo("success")
+
+        if (response.status == 400){
+            setMessage("Error: Duplicate Link")
+            setMessageInfo("error")
+        }
+    }catch(error){
+        setMessage(error)
+            setMessageInfo("error")
+    }finally{
+        setIsLoading(false)
+    }
+   
     }
 
     //Function to handle event on submit button
@@ -35,13 +56,19 @@ export default function Home(){
 
     return (
         <div>
+            {message && (
+                <div className={`popup ${messageInfo === 'success' ? 'Success!' : 'Error!'}`}>
+                    {message}
+                    <button onClick= {() => setMessage(null)}>x</button>
+                    </div>
+            )}
             <form onSubmit = {handleSubmit}>
                 <input 
                     name = "url"
                     value={value}
                     onChange={(e)=> setValue(e.target.value)}
                 />
-                <button type="submit">Submit</button>
+                <button type="submit" disabled = {isLoading}>Submit</button>
             </form>
         </div>
     )
