@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel,HttpUrl
+import asyncio
 from uuid import uuid4
 
 app = FastAPI()
@@ -12,7 +13,7 @@ class LinkIn(BaseModel):
 class LinkOut(BaseModel):
     url: str
     status: str
-
+submittedLinks = set()
 db = []
 
 #Retuyrns health of the app
@@ -29,13 +30,17 @@ def root():
 #url gets added to db
 
 @app.post("/link", status_code=201)
-def create_link(payload: LinkIn):
+async def create_link(payload: LinkIn):
+    #await asyncio.sleep(5) :: used to test submit buton disable
+    if str(payload.url) in submittedLinks:
+        raise HTTPException(status_code=400, detail="Link Already Submitted")
     db.append(LinkOut(url=str(payload.url), status="pending"))
+    submittedLinks.add(str(payload.url))
     return {"ok":True}
 
 @app.get("/queue")
-def itemizeDB():
-    return {"database": db}
+async def getDb():
+    return {"database": list(db)}
 
 
 #User gets results
