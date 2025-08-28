@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel,HttpUrl
 import asyncio
+from datetime import datetime, timezone
 from uuid import uuid4
 
 app = FastAPI()
@@ -13,6 +14,7 @@ class LinkIn(BaseModel):
 class LinkOut(BaseModel):
     url: str
     status: str
+    created_at: datetime
 submittedLinks = set()
 db = []
 
@@ -33,8 +35,10 @@ def root():
 async def create_link(payload: LinkIn):
     #await asyncio.sleep(5) :: used to test submit buton disable
     if str(payload.url) in submittedLinks:
-        raise HTTPException(status_code=400, detail="Link Already Submitted")
-    db.append(LinkOut(url=str(payload.url), status="pending"))
+        raise HTTPException(status_code=409, detail="Link Already Submitted!")
+    curr_time = datetime.now(timezone.utc)
+    rfc_time = curr_time.isoformat(timespec='milliseconds').replace('+00.00','Z')
+    db.append(LinkOut(url=str(payload.url), status="pending", created_at =rfc_time ))
     submittedLinks.add(str(payload.url))
     return {"ok":True}
 

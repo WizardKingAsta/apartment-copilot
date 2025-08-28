@@ -8,26 +8,25 @@ const TARGET = API_BASE + "/link"
 export default async function handler(request, response){
     //Check if the request is aking to post to server
     if(request.method !== "POST"){
-        response.setHeader('Allow', 'POST');
-        return response.status(405).json({message: "Method not allows (in api/link)"});
+        res.setHeader('Allow', 'POST');
+        return res.status(405).json({detail: "Method not allows (in api/link)"});
     }
 
     //make sure of reeuest is non empty
     let body = request.body;                                     
     if (!body || typeof body !== "object") {
-        return response.status(400).json({ message: "Invalid JSON (api/link)" });
+        return response.status(400).json({ detail: "Invalid JSON (api/link)" });
     }
     // check to ensure right type and presence of url
     const url = body.url;                                  
     if (!url || typeof url !== "string") {
-        console.log(url)
-        return response.status(400).json({ message: "Field 'url' is required (api/link)" }); 
+        return response.status(400).json({ detail: "Field 'url' is required (api/link)" }); 
     }
 
     //check if url is valid url
 
     if(!(url.startsWith("http://") || url.startsWith("https://"))){
-        return response.status(400).json({message: "Not a valid http or https link (api/link"});
+        return response.status(400).json({detail: "Not a valid http or https link (api/link)"});
     }
 
     // Try sending to api
@@ -38,15 +37,18 @@ export default async function handler(request, response){
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({url})
     });
+    const message = await servRes.json()
 
     if(!servRes.ok){
-        return response.status(servRes.status).json({ message: servRes.statusText });
+        return response.status(servRes.status).json(message);
     }
 
 }catch(error){
     console.error(error)
     return response.status(502).json({ message: "Upstream unavailable (api/link)" });
 
+}finally{
+    
 }
 
     //send to api
