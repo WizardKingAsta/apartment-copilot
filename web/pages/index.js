@@ -1,7 +1,17 @@
 import {Form} from 'next/form'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState} from "react"
+import { useNavigate } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 export default function Home(){
+    return(
+            <HomeContent />
+    )
+
+}
+
+function HomeContent(){
     //Holds current input
     const [value, setValue] = useState("");
     //Keep track of loading value to grey out submit button
@@ -10,6 +20,9 @@ export default function Home(){
     //Keep track of if message is being used
     const [message, setMessage] = useState(null);
     const [messageInfo, setMessageInfo] = useState('');
+
+    //Function to navigate to a different page
+    const router = useRouter()
 
     //send url to back end for storage
     async function sendSubmission(url){
@@ -54,6 +67,7 @@ export default function Home(){
 
     }
 
+    
 
     return (
         <div>
@@ -70,6 +84,7 @@ export default function Home(){
                     onChange={(e)=> setValue(e.target.value)}
                 />
                 <button type="submit" disabled = {isLoading}>Submit</button>
+                <button onClick = {() => router.push("/board/")}>Go To Board</button>
             </form>
         </div>
     )
