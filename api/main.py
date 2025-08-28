@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel,HttpUrl
 import asyncio
 from datetime import datetime, timezone
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 app = FastAPI()
 
@@ -13,6 +13,7 @@ class LinkIn(BaseModel):
 #Link out goes into database, carries the analysis status with it
 class LinkOut(BaseModel):
     url: str
+    id: UUID
     status: str
     created_at: datetime
 submittedLinks = set()
@@ -38,12 +39,14 @@ async def create_link(payload: LinkIn):
         raise HTTPException(status_code=409, detail="Link Already Submitted!")
     curr_time = datetime.now(timezone.utc)
     rfc_time = curr_time.isoformat(timespec='milliseconds').replace('+00.00','Z')
-    db.append(LinkOut(url=str(payload.url), status="pending", created_at =rfc_time ))
+    db.append(LinkOut(url=str(payload.url), id = uuid4(), status="pending", created_at =rfc_time ))
     submittedLinks.add(str(payload.url))
     return {"ok":True}
 
 @app.get("/queue")
 async def getDb():
+    # Sort by most recent time
+    db.sort(key = lambda x: x.created_at, reverse=True)
     return {"database": list(db)}
 
 
