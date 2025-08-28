@@ -23,9 +23,10 @@ export default function Home(){
         });
         setMessage("Success: Link has been posted!")
         setMessageInfo("success")
+        const issue = await response.json()
 
-        if (response.status == 400){
-            setMessage("Error: Duplicate Link")
+        if(!response.ok){
+            setMessage(issue.detail)
             setMessageInfo("error")
         }
     }catch(error){
