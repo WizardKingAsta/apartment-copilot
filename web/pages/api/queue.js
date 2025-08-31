@@ -11,7 +11,6 @@ export default async function getUrls(request, res){
     const response = await fetch(TARGET);
     const data = await response.json();
 
-    console.log(data.created_at)
 
     //Get current time for 'time since posted' metric on client frontend
     const now = new Date();

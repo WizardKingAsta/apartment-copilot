@@ -82,8 +82,8 @@ export default function Board(){
         urlArray.length == 0 ? (
             <h2>Empty</h2>
         )  : (urlArray.map((entry) => (
-        <div key ={entry.id}>
-         <h2>{entry.url} : {entry.status} : {timeMath(servTime,entry.created_at)}</h2>
+        <div key ={entry[0]}>
+         <h2>{entry[2]} : {entry[3]} : {timeMath(servTime,entry[4])}</h2>
          </div>
         )))}
 
