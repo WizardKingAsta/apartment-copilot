@@ -2,6 +2,9 @@
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
+// Set up API route for board anlysis
+const A_TARGET = "/api/analysis"
+
 function timeMath(serverTime, createTime){
     if(!serverTime){
         return "Could Not locate Server Time"
@@ -42,9 +45,18 @@ async function fetchAPI(TARGET){
 }
 
 
+async function apiAnalysis(){
+    //Set all links to fetching
+        //fill in
+    const response = await fetch(A_TARGET)
+    //reload board
+    return response
+}   
+
+
 
 export default function Board(){
-    // Set up API route path
+    // Set up API route path for board loading
     const TARGET =  "/api/queue"
     //fetchAPI();
 
@@ -72,9 +84,43 @@ export default function Board(){
         setBoardLoading(false);  //loading false to take away loading sign
     };
 
+    //Is loading for analysis button
+    const [isFetching, setIsFetching] = useState(false);
+    //function calls outside function while keeping re4act features
+    const handleAnalysis = async() => {
+        //Change is fetching to true to disable the analysis buton
+        setIsFetching(true)
+
+        //Call analysis function which sets all pending -> queued
+        const result = await apiAnalysis()
+
+        //Create poll interval to keep refreshing board while we analyze
+        const pollInterval = setInterval(async() => {
+            //Get new data by loading board again
+            await loadBoardData();
+            //Extract datarows from respose
+
+            //Check if work is still being done by seeing if any of the db items are in queue or fetching (ie not parsed already)
+            const stillProcessing = urlArray.some(
+                urlArray => urlArray[4] === 'queued' || urlArray[4] === 'fetching'
+            );
+
+            //Stop refreshibg if that is the case
+            if(!stillProcessing){
+                clearInterval(pollInterval)
+                setIsFetching(false)
+            }
+        }, 2000);
+        
+    }
+
+
+
+
     return (<div>
         <button onClick={loadBoardData}>Refresh</button>
         <button onClick ={() => router.back()}>Go Back</button>
+        <button disabled = {isFetching} onClick = {handleAnalysis}>Analysis</button>
         <h1>Board</h1>
         {boardLoading ? (
             <h2>Loading...</h2>
@@ -83,7 +129,7 @@ export default function Board(){
             <h2>Empty</h2>
         )  : (urlArray.map((entry) => (
         <div key ={entry[0]}>
-         <h2>{entry[2]} : {entry[3]} : {timeMath(servTime,entry[4])}</h2>
+         <h2>{entry[3]} : {entry[4]} : {timeMath(servTime,entry[5])}</h2>
          </div>
         )))}
 
