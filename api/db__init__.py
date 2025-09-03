@@ -9,7 +9,8 @@ def initialize_databse():
         CREATE TABLE IF NOT EXISTS linksubmissions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             uuid TEXT UNIQUE NOT NULL,
-            url TEXT UNIQUE NOT NULL,
+            url TEXT NOT NULL,
+            canon_url TEXT UNIQUE NOT NULL,
             status TEXT NOT NULL DEFAULT 'pending',
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
