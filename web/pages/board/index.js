@@ -1,5 +1,5 @@
 "use client"; //import use client to ensure client side (api route is server side which helsp prevent CORS error of direct API route from here)
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useRouter} from 'next/router';
 
 // Set up API route for board anlysis
@@ -68,11 +68,22 @@ export default function Board(){
 
     //Set loaded time to do math for "time since upload" later
     const [servTime, setServTime] = useState(null);
+
+    //Is loading for analysis button
+    const [isFetching, setIsFetching] = useState(false);
+    // create poll interval with useRef so it can be accessed across areas and is mutable
+    const pollInterval = useRef(null)
+
     
     //Next router to return Home
     const router = useRouter();
    //useEffect to load board data whens ite is opebed
-    useEffect(()=>{loadBoardData(TARGET)},[]);
+    useEffect(()=>{
+        loadBoardData(TARGET)
+        return () =>{
+            clearInterval(pollInterval.current) //use reference to poll interval to end pollig when we leave the page to save api time
+        }
+    },[]);
 
     const loadBoardData = async() =>{
         //Set board laoding so it displays a loading sign
@@ -84,8 +95,33 @@ export default function Board(){
         setBoardLoading(false);  //loading false to take away loading sign
     };
 
-    //Is loading for analysis button
-    const [isFetching, setIsFetching] = useState(false);
+    //Timouts and interval for polling
+    const INTERVAL = 2000; //2 second polling for submissions
+    const TIMEOUT = 3 * 60 * 1000 ;// 3 minite timeout for link analysis
+    const start = Date.now();
+
+    async function createPoll(){
+        
+    //Clear existing iterval to ensure successful unmount later
+    clearInterval(pollInterval.current)
+    //Create poll interval to keep refreshing board while we analyze
+    pollInterval.current = setInterval(async() => {
+        //Get new data by loading board again (functino automatically replaces global array values)
+        await loadBoardData();
+        //Check if work is still being done by seeing if any of the db items are in queue or fetching (ie not parsed already)
+        const stillProcessing = urlArray.some(
+            urlArray => urlArray[4] === 'queued' || urlArray[4] === 'fetching'
+        );
+
+        //Stop refreshibg if that is the case
+        if(!stillProcessing || Date.now()-start > TIMEOUT){
+            clearInterval(pollInterval)
+            setIsFetching(false)
+            return
+        }
+    }, INTERVAL);
+    }
+    
     //function calls outside function while keeping re4act features
     const handleAnalysis = async() => {
         //Change is fetching to true to disable the analysis buton
@@ -93,24 +129,8 @@ export default function Board(){
 
         //Call analysis function which sets all pending -> queued
         const result = await apiAnalysis()
-
-        //Create poll interval to keep refreshing board while we analyze
-        const pollInterval = setInterval(async() => {
-            //Get new data by loading board again
-            await loadBoardData();
-            //Extract datarows from respose
-
-            //Check if work is still being done by seeing if any of the db items are in queue or fetching (ie not parsed already)
-            const stillProcessing = urlArray.some(
-                urlArray => urlArray[4] === 'queued' || urlArray[4] === 'fetching'
-            );
-
-            //Stop refreshibg if that is the case
-            if(!stillProcessing){
-                clearInterval(pollInterval)
-                setIsFetching(false)
-            }
-        }, 2000);
+        // uses funcinon to create a poll every INTERVAL var seconds
+        createPoll()
         
     }
 
