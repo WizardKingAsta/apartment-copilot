@@ -4,6 +4,7 @@ import { useState} from "react"
 import { useNavigate } from "react-router-dom";
 import { useRouter } from 'next/router';
 
+
 export default function Home(){
     return(
             <HomeContent />
