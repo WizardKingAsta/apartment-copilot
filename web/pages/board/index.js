@@ -5,6 +5,11 @@ import {useRouter} from 'next/router';
 // Set up API route for board anlysis
 const A_TARGET = "/api/analysis"
 
+let globalPollingInfo = {
+    isFetching: false
+};
+
+
 function timeMath(serverTime, createTime){
     if(!serverTime){
         return "Could Not locate Server Time"
@@ -79,7 +84,15 @@ export default function Board(){
     const router = useRouter();
    //useEffect to load board data whens ite is opebed
     useEffect(()=>{
+      
+        
+        if(globalPollingInfo.isFetching){
+            //set is fetching to true in case we have come back to page and it lost value
+            setIsFetching(true)
+            createPoll()
+        }else{
         loadBoardData(TARGET)
+        }
         return () =>{
             clearInterval(pollInterval.current) //use reference to poll interval to end pollig when we leave the page to save api time
         }
@@ -93,6 +106,7 @@ export default function Board(){
         const data = await response.json();  // turn response to json
         setUrlArray(data.database); // Set url array to database in data
         setBoardLoading(false);  //loading false to take away loading sign
+        return data.database
     };
 
     //Timouts and interval for polling
@@ -100,24 +114,25 @@ export default function Board(){
     const TIMEOUT = 3 * 60 * 1000 ;// 3 minite timeout for link analysis
     const start = Date.now();
 
-    async function createPoll(){
-        
+async function createPoll(){
     //Clear existing iterval to ensure successful unmount later
     clearInterval(pollInterval.current)
     //Create poll interval to keep refreshing board while we analyze
     pollInterval.current = setInterval(async() => {
         //Get new data by loading board again (functino automatically replaces global array values)
-        await loadBoardData();
+        // Assign to array so we have the freshest valyes for polling termination condiions
+        const freshData = await loadBoardData();
+
         //Check if work is still being done by seeing if any of the db items are in queue or fetching (ie not parsed already)
-        const stillProcessing = urlArray.some(
-            urlArray => urlArray[4] === 'queued' || urlArray[4] === 'fetching'
+        const stillProcessing = freshData.some(
+            listing => listing[4] === 'queued' || listing[4] === 'fetching' || listing[4] === 'pending'
         );
 
         //Stop refreshibg if that is the case
         if(!stillProcessing || Date.now()-start > TIMEOUT){
-            clearInterval(pollInterval)
+            clearInterval(pollInterval.current)
             setIsFetching(false)
-            return
+            globalPollingInfo.isFetching = false
         }
     }, INTERVAL);
     }
@@ -126,6 +141,8 @@ export default function Board(){
     const handleAnalysis = async() => {
         //Change is fetching to true to disable the analysis buton
         setIsFetching(true)
+        globalPollingInfo.isFetching = true;
+    
 
         //Call analysis function which sets all pending -> queued
         const result = await apiAnalysis()
@@ -140,7 +157,7 @@ export default function Board(){
     return (<div>
         <button onClick={loadBoardData}>Refresh</button>
         <button onClick ={() => router.back()}>Go Back</button>
-        <button disabled = {isFetching} onClick = {handleAnalysis}>Analysis</button>
+        <button disabled = {globalPollingInfo.isFetching} onClick = {handleAnalysis}>Analysis</button>
         <h1>Board</h1>
         {boardLoading ? (
             <h2>Loading...</h2>

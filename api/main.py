@@ -6,9 +6,13 @@ from datetime import datetime, timezone
 from uuid import UUID, uuid4
 from furl import furl
 from enum import Enum
+import requests
 
 
 app = FastAPI()
+
+TOKEN = '074c386a7d7b996bef0f1fa190f7f24b'
+DIFF_BOT_API=f"https://api.diffbot.com/v3/list?token={TOKEN}"
 
 #Create sqllite database
 conn = sqlite3.connect('copilot.db')
@@ -42,6 +46,10 @@ def health():
 @app.get("/")
 def root():
     return {"message":"Welcome to Apartment Copilot!"}
+
+@app.on_event("startup")
+async def startup():
+    asyncio.create_task(parserLoop())
 
 def canonicalize_url(url):
     f = furl(url)
@@ -107,6 +115,54 @@ async def getDb():
 
     return {"database": results}
 
+#Function to update status of rows
+def update_status(id,status):
+    try:
+        cursor.execute('''
+            UPDATE linksubmissions
+                SET status = ?
+                WHERE id = ?
+            ''', (status,id))
+        conn.commit()
+    except sqlite3.IntegrityError:  #raise error if there is a unique constrain breach (duplicate link)
+        raise HTTPException(status_code= 409, detail="Could Not Update Item Staus!") 
+    
+#RFunction to get all database items that have a status of qeuued
+def get_queue():
+    try:
+        cursor.execute('''
+            SELECT * FROM linksubmissions WHERE status= ?  ORDER BY created_at DESC
+            ''', (Status.QUEUED.value,))
+        conn.commit()
+        results = cursor.fetchall()
+        return results
+    except sqlite3.IntegrityError:  #raise error if there is a unique constrain breach (duplicate link)
+        raise HTTPException(status_code= 409, detail="Could Not Fetch Queued Items!") 
+    return []
+
+#Always working loop to turn queued items into parsed items
+async def parserLoop():
+    while True:
+        #call func for list of db items who are queued
+        queuedItems = get_queue()
+        for i in range(min(5,len(queuedItems))):
+            item = queuedItems[i]
+            #update status to fetch
+            update_status(item[0], Status.FETCHING.value)
+
+            #TODO: fill in parser logic
+            #call diff bot api for link style parse
+            response = requests.get(f"{DIFF_BOT_API}&url={item[2]}")
+
+            if response.status_code == "200":
+                print(response.json())
+            else:
+                print("Error:", response.text)
+
+            #Update status to parsed if no issues arised
+            update_status(item[0],Status.PARSED.value)
+        #sleep an wait for more work
+        await asyncio.sleep(5)
 
 #User gets results
 @app.get("/analysis")
