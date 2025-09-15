@@ -1,0 +1,24 @@
+Working on the big apartments_dot_com Debug:
+
+Work flow:
+Entry function (ln 279) takes in the items array from the json as a paramater. 
+->
+For every entry (they are dictionaries) in the array it gets sent to make_blob(ln 82)
+    Takes an array of informative fields and checks item for them. If found, adds that to the parts arr.
+->
+parts array goes to normalize_text (ln 72) to clean update
+-> then goes to extract_plan (ln 189)
+    ISSUE: one of the reg extractions takes in "One Bedroom, One Bath $1,020 - $1,820 1 Bed 1 Bath 700 sq ft $250 Deposit One Bedroom, One Bath Floor Plan Details One Bedroom, One Bath" and matches ","
+    SOLUTION: adjusted reg ex to require a digit before comma: added \d before [\d,]
+The file is now returning, no compilation or running errors
+
+However
+    ISSUE: The first number found (typically price) gets used in all numerical categoies
+    SOLUTION: added (?<!\$)\s* before rest of reg expression (ln 62) to ensure we skip any $ ranges so dollars dont get used for sq ft
+        changed from match to search as well in code (ln 155)
+
+    ISSUE: The use of .group() didn't work because of it now being search
+    SOLUTION: split the serch object into an array on "-"
+            removed extra values like $ or sq ft in the to int method
+
+Current position: The floor plan edits mostly work, they get overwritten by the reconciliation function (ln 282) because the per unit info is funky. Hash that out until further notice (if statements at ln 331 and 341 commented for now)

@@ -13,7 +13,17 @@ https://www.apartments.com/the-monte-dallas-tx/vnwh3kg/
 same posting, diff url:
 https://www.apartments.com/the-monte-dallas-tx/vnwh3kg/#officeHoursSection
 
+ApartmentList:
+https://www.apartmentlist.com/tx/fort-worth/chisholm-at-tavolo-park
 
+https://www.apartmentlist.com/tx/fort-worth/villas-de-alameda
+
+https://www.apartmentlist.com/tx/dallas/gallery-at-turtle-creek
+
+
+
+
+ADD ZILLOQ SUPPORT LATER
 ZILLOW LINKS
 https://www.zillow.com/homedetails/2024-Bourbon-St-Dallas-TX-75226/26679345_zpid/
 

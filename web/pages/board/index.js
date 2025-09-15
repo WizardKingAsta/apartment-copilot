@@ -166,7 +166,7 @@ async function createPoll(){
             <h2>Empty</h2>
         )  : (urlArray.map((entry) => (
         <div key ={entry[0]}>
-         <h2>{entry[3]} : {entry[4]} : {timeMath(servTime,entry[5])}</h2>
+         <h2>{entry[3]} : {entry[4]} : {entry[18]}: {timeMath(servTime,entry[5])}</h2>
          </div>
         )))}
 

@@ -1,12 +1,37 @@
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from pydantic import BaseModel,HttpUrl
+from collections import deque
 import sqlite3
 import asyncio
+import json
+import time
 from datetime import datetime, timezone
 from uuid import UUID, uuid4
 from furl import furl
 from enum import Enum
 import requests
+
+from adapters.apartments_dot_com import parse_apartments_items
+from adapters.schema import FloorPlan, Unit, ParserResult
+
+#Class to keep track of calls made, diffBot tier allows MAX 5 per minute
+class RateLimiter:
+    def __init__(self, max_calls=5, time_window = 60):
+        self.max_calls = max_calls
+        self.time_window - time_window
+        self.calls = deque()
+
+    #Function to see how many calls are in the past min
+    def can_call_diffBot(self):
+        now = time.time()
+        #Pop all calls that were more than a minute ago to see how many calls are in the minute
+        while self.calls and self.calls[0] <= now-self.time_window:
+            self.calls.popleft()
+        #return true if the number of calls requested can work
+        return len(self.calls)< self.max_calls
+    def record_call(self):
+        self.calls.append(time.time())
+
 
 
 app = FastAPI()
@@ -25,6 +50,10 @@ class Status(Enum):
     ERROR = "error"
     FETCHING = "fetching"
     QUEUED = "queued"
+
+class Popular_Sites(Enum):
+    APARTMENTS_DOT_COM = "apartments.com"
+    APARTMENT_LIST = "apartmentlist.com"
 
 #create a link model with HttpUrl for validation
 class LinkIn(BaseModel):
@@ -116,17 +145,20 @@ async def getDb():
     return {"database": results}
 
 #Function to update status of rows
-def update_status(id,status):
+def update_status(id,status, reason):
     try:
         cursor.execute('''
             UPDATE linksubmissions
-                SET status = ?
+                SET status = ?, status_reason = ?
                 WHERE id = ?
-            ''', (status,id))
+            ''', (status,reason,id))
         conn.commit()
     except sqlite3.IntegrityError:  #raise error if there is a unique constrain breach (duplicate link)
         raise HTTPException(status_code= 409, detail="Could Not Update Item Staus!") 
+
+
     
+
 #RFunction to get all database items that have a status of qeuued
 def get_queue():
     try:
@@ -140,6 +172,25 @@ def get_queue():
         raise HTTPException(status_code= 409, detail="Could Not Fetch Queued Items!") 
     return []
 
+def extract_Apartments_Dot_Com_Json(json):
+    #Separates out object and items array from json
+    obj = json["objects"][0]
+    items = obj["items"]
+
+    parse_apartments_items(items)
+
+    repPrice = None
+    rep_beds = None
+    rep_baths= None
+    rep_sqft = None
+    rep_availability = None
+    rep_plan_code = None
+    #plans = {plans:units}
+    return "A.com"
+
+def normalize_Apartment_List(raw):
+    return "AList"
+
 #Always working loop to turn queued items into parsed items
 async def parserLoop():
     while True:
@@ -148,19 +199,26 @@ async def parserLoop():
         for i in range(min(5,len(queuedItems))):
             item = queuedItems[i]
             #update status to fetch
-            update_status(item[0], Status.FETCHING.value)
+            update_status(item[0], Status.FETCHING.value,"")
 
             #TODO: fill in parser logic
             #call diff bot api for link style parse
             response = requests.get(f"{DIFF_BOT_API}&url={item[2]}")
+            raw = response.json()
 
-            if response.status_code == "200":
-                print(response.json())
+            if Popular_Sites.APARTMENTS_DOT_COM.value in item[2]:
+                #print(extract_Apartments_Dot_Com_Json(raw))
+                print(json.dumps(raw, indent=2))
+                #Update status to parsed if no issues arised
+                update_status(item[0],Status.PARSED.value, "")
+            elif Popular_Sites.APARTMENT_LIST.value in item[2]:
+                print(normalize_Apartment_List(raw))
+                #Update status to parsed if no issues arised
+                update_status(item[0],Status.PARSED.value, "")
             else:
-                print("Error:", response.text)
+                update_status(item[0],Status.ERROR.value, "Site Not Supported!")
+            
 
-            #Update status to parsed if no issues arised
-            update_status(item[0],Status.PARSED.value)
         #sleep an wait for more work
         await asyncio.sleep(5)
 
