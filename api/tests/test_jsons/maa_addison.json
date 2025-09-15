@@ -1,0 +1,154 @@
+{
+    "request": {
+      "pageUrl": "https://www.apartments.com/maa-addison-circle-addison-tx/39b587f/",
+      "api": "list",
+      "version": 3
+    },
+    "objects": [
+      {
+        "diffbotUri": "list|3|1660079725",
+        "icon": "https://www.apartments.com/a/05c8f3/faviconv2.ico",
+        "pageUrl": "https://www.apartments.com/maa-addison-circle-addison-tx/39b587f/",
+        "type": "list",
+        "title": "MAA Addison Circle - 5009 Addison Cir Addison, TX 75001",
+        "items": [
+          {
+            "title": "Pricing & Floor Plans"
+          },
+          {
+            "summary": "All"
+          },
+          {
+            "summary": "Studio"
+          },
+          {
+            "summary": "1 Bedroom"
+          },
+          {
+            "summary": "2 Bedrooms"
+          },
+          {
+            "date": "Sat, 21 Sep 2024 00:00:00 GMT",
+            "summary": "Studio 0x1 420-752 SF\n$1,170 \u2013 $2,360 Studio 1 Bath 492 \u2013 689 Sq Ft\nView Studio 0x1 420-752 SF Floor Plan Details Tour Floor Plan\n9 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 4919 price $1,325 square feet 689 availibility Now view more View More Send Message\nUnit 2653 price $1,390 square feet 497 availibility Sep 21 view more View More Send Message\nUnit 3919 price $1,280 square feet 547 availibility Sep 26 view more View More Send Message\nShow More Units (6)",
+            "title": "Unit"
+          },
+          {
+            "date": "Fri, 18 Oct 2024 00:00:00 GMT",
+            "summary": "Studio 0x1 491-774 SF\n$1,365 \u2013 $2,140 Studio 1 Bath 685 \u2013 696 Sq Ft\nView Studio 0x1 491-774 SF Floor Plan Details Tour Floor Plan\n2 Available units",
+            "title": "Unit"
+          },
+          {
+            "date": "Fri, 04 Oct 2024 00:00:00 GMT",
+            "summary": "Studio 0x1 652-877 SF                                                                      $1,470 \u2013 $2,225                                                                                                                                                                                                                      Studio                                     1 Bath                                         662 Sq Ft                                                                                                                                                                           View Studio 0x1 652-877 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Fri, 18 Oct 2024 00:00:00 GMT",
+            "summary": "Loft 0x1 803-1266 SF                                                                      $1,570 \u2013 $2,325                                                                                                                                                                                                                      Studio                                     1 Bath                                         888 Sq Ft                                                                                                                                                                           View Loft 0x1 803-1266 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Sun, 20 Oct 2024 00:00:00 GMT",
+            "summary": "Dual Level 0x1 678 SF                                                                      $1,435 \u2013 $2,190                                                                                                                                                                                                                      Studio                                     1 Bath                                         678 Sq Ft                                                                                                                                                                           View Dual Level 0x1 678 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Wed, 23 Oct 2024 00:00:00 GMT",
+            "summary": "Studio 0x1 770-1011 SF                                                                      $1,615 \u2013 $2,370                                                                                                                                                                                                                      Studio                                     1 Bath                                         770 Sq Ft                                                                                                                                                                           View Studio 0x1 770-1011 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Mon, 30 Sep 2024 00:00:00 GMT",
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 1x1 571-1392 SF\n$1,385 \u2013 $2,670 1 Bed 1 Bath 593 \u2013 1,046 Sq Ft\nView Traditional 1x1 571-1392 SF Floor Plan Details Tour Floor Plan\n5 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 1146 price $1,385 square feet 603 availibility Now view more View More Send Message\nUnit 1110 price $1,410 square feet 627 availibility Now view more View More Send Message\nUnit 2144 price $1,445 square feet 593 availibility Now view more View More Send Message\nShow More Units (2)",
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 1x1 633-1044 SF\n$1,400 \u2013 $2,950 1 Bed 1 Bath 673 \u2013 1,005 Sq Ft\nView Traditional 1x1 633-1044 SF Floor Plan Details Tour Floor Plan\n10 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 2713 price $1,400 square feet 673 availibility Now view more View More Send Message\nUnit 1633 price $1,455 square feet 683 availibility Now view more View More Send Message\nUnit 3611 price $1,510 square feet 760 availibility Now view more View More Send Message\nShow More Units (7)",
+            "title": "Unit"
+          },
+          {
+            "date": "Thu, 07 Nov 2024 00:00:00 GMT",
+            "summary": "Traditional 1x1 667-927 SF\n$1,470 \u2013 $2,695 1 Bed 1 Bath 790 Sq Ft\nView Traditional 1x1 667-927 SF Floor Plan Details Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 1x1 741-950 SF                                                                      $1,480 \u2013 $2,350                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         760 Sq Ft                                                                                                                                                                           View Traditional 1x1 741-950 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 1x1 757-968 SF                                                                      $1,560 \u2013 $2,430                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         762 Sq Ft                                                                                                                                                                           View Traditional 1x1 757-968 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Mon, 07 Oct 2024 00:00:00 GMT",
+            "title": "Unit"
+          },
+          {
+            "date": "Thu, 07 Nov 2024 00:00:00 GMT",
+            "summary": "Traditional 1x1.5 862-1054 SF\n$1,590 \u2013 $2,915 1 Bed 1 Bath 862 \u2013 1,054 Sq Ft\nView Traditional 1x1.5 862-1054 SF Floor Plan Details Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 1x1 856-1100 SF                                                                      $1,695 \u2013 $2,565                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         1,100 Sq Ft                                                                                                                                                                           View Traditional 1x1 856-1100 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Wed, 06 Nov 2024 00:00:00 GMT",
+            "summary": "Traditional 1x1 779 SF                                                                      $1,475 \u2013 $2,700                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         779 Sq Ft                                                                                                                                                                           View Traditional 1x1 779 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Fri, 08 Nov 2024 00:00:00 GMT",
+            "summary": "Traditional 1x1 795-933 SF                                                                      $1,610 \u2013 $2,835                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         795 Sq Ft                                                                                                                                                                           View Traditional 1x1 795-933 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 2x2 957-1163 SF                                                                      $1,860 \u2013 $3,015                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         957 Sq Ft                                                                                                                                                                           View Traditional 2x2 957-1163 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Tue, 08 Oct 2024 00:00:00 GMT",
+            "summary": "Traditional 2x2 946-1279 SF\n$1,865 \u2013 $3,095 2 Beds 2 Baths 1,053 \u2013 1,066 Sq Ft\nView Traditional 2x2 946-1279 SF Floor Plan Details Tour Floor Plan\n3 Available units",
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 2x2 1093 SF                                                                      $1,945 \u2013 $3,100                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,093 Sq Ft                                                                                                                                                                           View Traditional 2x2 1093 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "date": "Fri, 08 Nov 2024 00:00:00 GMT",
+            "summary": "Traditional 2x2 1148-1267 SF\n$1,965 \u2013 $3,135 2 Beds 2 Baths 1,148 \u2013 1,267 Sq Ft\nView Traditional 2x2 1148-1267 SF Floor Plan Details Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 2x2 1222 SF                                                                      $2,060 \u2013 $3,215                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,222 Sq Ft                                                                                                                                                                           View Traditional 2x2 1222 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "summary": "Traditional 2x2 1325-1518 SF                                                                      $2,290 \u2013 $3,445                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,354 Sq Ft                                                                                                                                                                           View Traditional 2x2 1325-1518 SF Floor Plan Details                                         Tour Floor Plan",
+            "title": "Unit"
+          },
+          {
+            "summary": "* Price shown is base rent. Excludes user-selected optional fees and variable or usage-based fees and required charges due at or prior to move-in or at move-out. View Fees and Policies for details. Price, availability, fees, and any applicable rent special are subject to change without notice."
+          },
+          {
+            "title": "* Square footage definitions vary. Displayed square footage is approximate."
+          },
+          {
+            "summary": "One-Time Move-In Fees\nApplication Fee $85",
+            "title": "Details"
+          },
+          {
+            "summary": "Lease Options\nNone Property Information\nBuilt in 1998\n1360 units/4 stories",
+            "title": "Property Information"
+          }
+        ]
+      }
+    ]
+  }
