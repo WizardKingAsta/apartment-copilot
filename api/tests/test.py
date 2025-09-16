@@ -18,6 +18,10 @@ for key, value in tests.items():
     print(f"Test for for {key}:\n")
     objects = tests[key]["objects"][0]
     items = objects["items"]
+    units = []
+    #if key == "garrison.json":
     plans, units, rep = parse_apartments_items(items)
-    for el in plans:
+   
+    for el in units:
+        #if el.plan_name_ref == 'A1':
         print(el)

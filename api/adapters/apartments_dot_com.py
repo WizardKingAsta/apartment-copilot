@@ -64,7 +64,8 @@ RE_BEDS = re.compile(r"(Studio)|(\d+(?:\.\d+)?)\s*Bed", re.I)
 RE_BATHS = re.compile(r"(\d+(?:\.\d+)?)\s*Bath", re.I)
 RE_DEPOSIT = re.compile(r"\$([\d,]+)\s*Deposit", re.I)
 RE_AVAIL_COUNT = re.compile(r"\b(\d+)\s+Available units?\b", re.I)
-RE_UNIT_ID = re.compile(r"\bUnit\s+([A-Za-z0-9\-]+)\b", re.I)
+# \b or (?:^|\\b)
+RE_UNIT_ID = re.compile(r"(?:^|\b)Unit\s+([A-Za-z0-9\-]+)\b", re.I)
 RE_AVAIL = re.compile(r"\bavailability\s+([A-Za-z]{3,9}\s+\d{1,2}(?:,\s*\d{4})?|Now|Waitlist)\b", re.I)  # ⚠️ 'availability' token may be missing on some pages
 
 # ---------------- Normalization helpers ----------------
@@ -92,7 +93,7 @@ def make_blob(item: Dict[str, Any]) -> str:
         "availableColumn",
         "title",
     ]:
-       # print(item)
+     
         val = item.get(key)
         if isinstance(val, str) and val.strip():
             parts.append(val)
@@ -101,6 +102,7 @@ def make_blob(item: Dict[str, Any]) -> str:
 # ---------------- Classification ----------------
 
 def is_plan_header(item: Dict[str, Any], blob: str) -> bool:
+    #print("plan Header:"+blob)
     title = (item.get("title") or "").strip()
     if title and title not in GENERIC_TITLES:
         if RE_AVAIL_COUNT.search(title):
@@ -116,6 +118,7 @@ def is_unit_row(item: Dict[str, Any], blob: str) -> bool:
     if title == "Unit" or item.get("unitColumn"):
         return True
     if RE_UNIT_ID.search(blob):
+       # print("unit:" + blob)
         return True
     has_price = "price" in blob or "$" in blob
     has_sqft = "sq ft" in blob
@@ -125,6 +128,7 @@ def is_unit_row(item: Dict[str, Any], blob: str) -> bool:
 
 def classify_item(item: Dict[str, Any], blob: str) -> str:
     # ⚠️ Order matters; unit detection first prevents mislabeling row fragments as plans.
+    #print("classify:"+blob)
     if is_unit_row(item, blob):
         return "unit_row"
     if is_plan_header(item, blob):
@@ -162,14 +166,13 @@ def _baths_from_blob(blob: str) -> Optional[float]:
 
 def _range_from_regex(pattern: re.Pattern, blob: str) -> Tuple[Optional[int], Optional[int]]:
     m = pattern.search(blob)
-    #print("blob", blob)
-    #print(pattern.search(blob))
+
     if not m:
         return (None, None)
     #split match object into usable array on -
    
     arr = m.group(0).split("-")
-    #print(arr)
+    
     lo = _to_int(arr[0])#_to_int(m.group(1))
     hi = lo
     if len(arr)>1:
@@ -230,6 +233,25 @@ def extract_plan(item: Dict[str, Any], blob: str, source_url: Optional[str]) -> 
         source_url=source_url,
         scraped_at=date.today().isoformat(),
     )
+#function to parse dict item to see if there are multiple units, and split them to individual units
+def split_unit(blob: str)-> str:
+    #find all matches with unit x price, this appears once per unit so we can use it to split da 
+    matches = re.finditer(r"Unit\s*\w*\s*price\s*", blob, re.I)
+    markers = []
+    #loop through iterator obj and save all starting indexes for unit matches
+    for match in matches:
+        markers.append(match.start())
+
+    units = []
+    #loop through all starting markers
+    for i in range(len(markers)):
+        #if there is an unit after this one add substring of this unit start to that unit start to the list of units
+        if i+1< len(markers):
+            units.append(blob[markers[i]:markers[i+1]])
+        else: #if last unit take substring from start of unit to end of blob
+            units.append(blob[markers[i]::])
+
+    return units
 
 def extract_unit(item: Dict[str, Any], blob: str, current_plan: Optional[str], source_url: Optional[str]) -> Unit:
     avail_hint = (item.get("availableColumnInnerContainer") or item.get("availableColumn") or "").strip()
@@ -246,9 +268,14 @@ def extract_unit(item: Dict[str, Any], blob: str, current_plan: Optional[str], s
     if mp:
         price = _to_int(mp.group(1))
 
-    # sqft
-    ms = re.search(r"(\d{3,4})\s*sq\s*ft", blob, re.I) or re.search(r"square feet\s*(\d{3,4})", blob, re.I)
-    sqft = int(ms.group(1)) if ms else None
+    # try for patterns where "sq ft" comes before numbers
+    ms = re.search(r"\s*sq\s*ft\s*([\d,]{3,5})", blob, re.I) or re.search(r"square feet\s*(\d{3,4})", blob, re.I)
+
+    #if that returns none then check for second pattern
+    if not ms:
+        #check for pattern where "sq ft" comes after numbers, and do not look after $ to skip prices
+        ms = re.search(r"(?<!\$)([\d,]{3,5})\s*sq\s*ft", blob, re.I) or re.search(r"square feet\s*(\d{3,4})", blob, re.I)
+    sqft = _to_int(ms.group(1)) if ms else None
 
     # availability
     ma = RE_AVAIL.search(blob)
@@ -309,14 +336,17 @@ def parse_apartments_items(items: List[Dict[str, Any]], source_url: Optional[str
     #Loops over all items in json, key point
     for item in items:
         #Call to make a blob on the info in the item
+        #print("\n ITEM:")
+        #print(item)
         blob = make_blob(item)
         if not blob:
             report["noise_items"] += 1
             continue
 
         kind = classify_item(item, blob)
-       # print(blob)
+    
         if kind == "plan_header":
+        
             plan = extract_plan(item, blob, source_url)
             plans.append(plan)
             report["plans_found"] += 1
@@ -324,9 +354,11 @@ def parse_apartments_items(items: List[Dict[str, Any]], source_url: Optional[str
             last_plan_obj = plan
 
         elif kind == "unit_row":
-            unit = extract_unit(item, blob, current_plan_name, source_url)
-            units.append(unit)
-            report["units_found"] += 1
+            split_units = split_unit(blob)
+            for split_unit_blob in split_units:
+                unit = extract_unit(item, split_unit_blob, current_plan_name, source_url)
+                units.append(unit)
+                report["units_found"] += 1
             #if last_plan_obj:
                 #widen_plan_ranges_with_unit(last_plan_obj, unit)
             if not last_plan_obj:#else:

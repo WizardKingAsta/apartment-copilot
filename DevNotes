@@ -22,3 +22,24 @@ However
             removed extra values like $ or sq ft in the to int method
 
 Current position: The floor plan edits mostly work, they get overwritten by the reconciliation function (ln 282) because the per unit info is funky. Hash that out until further notice (if statements at ln 331 and 341 commented for now)
+
+Unit control flow: parse_apartment_items -> make_blob (for each item) -> extract_unit (if this.kind is "unit")
+
+    ISSUE: the plans dont always have correct sq ft and prices: the sq ft is usualy the same as price
+    SOLUTION: add sq ft patterm to begining of the reg ex to allign with unit blob "\s*sq\s*ft\s* (ln 250)
+
+    ISSUE: some blobs are combining into one, meaning only the first one gets recognized as a unit.
+        This is happening because some parses from diffbot have "summary" with both units in them. This seems to happen for floor plans, combining the units into one summary. Meaning we need to unpack this in the control flow.
+    SOLVE: Created a split units function that splits the blob into all its own units and returns it, then each unit in that list gets called ectract_unit.
+
+Now units are processed with mostly accurate price, sq ft, and coverage of all units. However each of them have their own respective issues:
+    MAA: cannot properly extract names of units
+        upon further inspection it seems it is not noticing the plan headers as plan headers
+    The Monte: Has repeats for mamu of the units
+    Garrison: putting everything under one bucket: "A4 Traditional" "A4 Classic" all fall nder "A3 Traditional"
+        The is_unit function catches floor plans as units, the line 119 RE_UNIT_ID.search(blob)
+END OF DAY NOTES:
+    Sophiloren: mstakes A1s as E1 rest correct
+    Garrison: Double entries for everything
+    maa: does not pull any names, only ctaches units that are part of floor plans with >=3 units, single offs dont get hit.
+    Monte: 

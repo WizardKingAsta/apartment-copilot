@@ -1,266 +1,267 @@
 {
-    "request": {
+  "request": {
+    "pageUrl": "https://www.apartments.com/the-monte-dallas-tx/vnwh3kg/",
+    "api": "list",
+    "version": 3
+  },
+  "objects": [
+    {
+      "diffbotUri": "list|3|-1238202987",
+      "icon": "https://www.apartments.com/a/05c8f3/faviconv2.ico",
       "pageUrl": "https://www.apartments.com/the-monte-dallas-tx/vnwh3kg/",
-      "api": "list",
-      "version": 3
-    },
-    "objects": [
-      {
-        "diffbotUri": "list|3|-1237875488",
-        "icon": "https://www.apartments.com/a/05c8f3/faviconv2.ico",
-        "pageUrl": "https://www.apartments.com/the-monte-dallas-tx/vnwh3kg/",
-        "type": "list",
-        "title": "The Monte - 4909 Haverwood Ln Dallas, TX 75287",
-        "items": [
-          {
-            "title": "Pricing & Floor Plans"
-          },
-          {
-            "title": "filter results by bedrooms"
-          },
-          {
-            "summary": "Estimate your monthly and one-time fees.",
-            "title": "Cost Calculator:"
-          },
-          {
-            "summary": "One Bedroom, One Bath\n$1,020 \u2013 $1,820 1 Bed 1 Bath 700 Sq Ft $250 Deposit\nView One Bedroom, One Bath Floor Plan Details Tour Floor Plan",
-            "title": "One Bedroom, One Bath"
-          },
-          {
-            "unitColumn": "Unit",
-            "title": "Unit",
-            "summary": "Unit"
-          },
-          {
-            "title": "Base Price",
-            "summary": "Base Price",
-            "pricingColumn": "Base Price"
-          },
-          {
-            "title": "Sq Ft",
-            "summary": "Sq Ft",
-            "sqftColumn": "Sq Ft"
-          },
-          {
-            "title": "Availability",
-            "summary": "Availability",
-            "availableColumn": "Availability"
-          },
-          {
-            "title": "Unit Details",
-            "summary": "Unit Details",
-            "unitDetailsColumn": "Unit Details"
-          },
-          {
-            "unitColumn": "Unit 0703",
-            "summary": "Unit 0703                        price                  $1,060                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 0703",
-            "sqftColumn": "square feet 700",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,060"
-          },
-          {
-            "unitColumn": "Unit 0711",
-            "summary": "Unit 0711                        price                  $1,130                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 0711",
-            "sqftColumn": "square feet 700",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,130"
-          },
-          {
-            "unitColumn": "Unit 1403",
-            "summary": "Unit 1403                        price                  $1,130                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 1403",
-            "sqftColumn": "square feet 700",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,130"
-          },
-          {
-            "summary": "One Bedroom, One Bath - Renovated\n$1,050 \u2013 $1,820 1 Bed 1 Bath 700 Sq Ft $250 Deposit\nView One Bedroom, One Bath - Renovated Floor Plan Details Tour Floor Plan",
-            "title": "One Bedroom, One Bath - Renovated"
-          },
-          {
-            "unitColumn": "Unit",
-            "title": "Unit",
-            "summary": "Unit"
-          },
-          {
-            "title": "Base Price",
-            "summary": "Base Price",
-            "pricingColumn": "Base Price"
-          },
-          {
-            "title": "Sq Ft",
-            "summary": "Sq Ft",
-            "sqftColumn": "Sq Ft"
-          },
-          {
-            "title": "Availability",
-            "summary": "Availability",
-            "availableColumn": "Availability"
-          },
-          {
-            "summary": "Unit Details",
-            "title": "Unit Details"
-          },
-          {
-            "unitColumn": "Unit 1008",
-            "summary": "Unit 1008                        price                  $1,070                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 1008",
-            "sqftColumn": "square feet 700",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,070"
-          },
-          {
-            "unitColumn": "Unit 0910",
-            "summary": "Unit 0910                        price                  $1,070                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 0910",
-            "sqftColumn": "square feet 700",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,070"
-          },
-          {
-            "unitColumn": "Unit 2210",
-            "summary": "Unit 2210                        price                  $1,070                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 2210",
-            "sqftColumn": "square feet 700",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,070"
-          },
-          {
-            "unitColumn": "Unit 2823",
-            "summary": "One Bedroom, One Bath - Renovated\n$1,090 \u2013 $1,920 1 Bed 1 Bath 683 Sq Ft $250 Deposit\nView One Bedroom, One Bath - Renovated Floor Plan Details Tour Floor Plan\n13 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 2435 price $1,090 square feet 683 availibility Now view more View More Apply Now Unit 2435\nUnit 2615 price $1,150 square feet 683 availibility Now view more View More Apply Now Unit 2615\nUnit 2823 price $1,180 square feet 683 availibility Now view more View More Apply Now Unit 2823\nShow More Units (10)",
-            "sqftColumn": "square feet 683",
-            "title": "One Bedroom, One Bath - Renovated",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,180"
-          },
-          {
-            "unitColumn": "Unit 2816",
-            "summary": "One Bedroom, One Bath - Renovated\n$1,280 \u2013 $2,020 1 Bed 1 Bath 784 Sq Ft $250 Deposit\nView One Bedroom, One Bath - Renovated Floor Plan Details Tour Floor Plan\n1 Available unit\nUnit Base Price Sq Ft Availability Unit Details\nUnit 2816 price $1,280 square feet 784 availibility Now view more View More Apply Now Unit 2816",
-            "sqftColumn": "square feet 784",
-            "title": "One Bedroom, One Bath - Renovated",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,280"
-          },
-          {
-            "unitColumn": "Unit 0914",
-            "date": "Thu, 26 Sep 2024 00:00:00 GMT",
-            "summary": "One Bedroom, One Bath-and-a-half - Renovated\n$1,350 \u2013 $2,250 1 Bed 1.5 Baths 950 Sq Ft $250 Deposit\nView One Bedroom, One Bath-and-a-half - Renovated Floor Plan Details Tour Floor Plan\n3 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 1214 price $1,350 square feet 950 availibility Now view more View More Apply Now Unit 1214\nUnit 1110 price $1,350 square feet 950 availibility Now view more View More Apply Now Unit 1110\nUnit 0914 price $1,350 square feet 950 availibility Sep 26 view more View More Apply Now Unit 0914",
-            "sqftColumn": "square feet 950",
-            "availableColumn": "availibility Sep 26",
-            "pricingColumn": "price $1,350",
-            "title": "Unit"
-          },
-          {
-            "unitColumn": "Unit 2723",
-            "date": "Thu, 17 Oct 2024 00:00:00 GMT",
-            "summary": "One Bedroom, One Bath - Renovated\n$1,240 \u2013 $1,990 1 Bed 1 Bath 799 Sq Ft $250 Deposit\nView One Bedroom, One Bath - Renovated Floor Plan Details Tour Floor Plan",
-            "sqftColumn": "square feet 799",
-            "availableColumn": "availibility Oct 17",
-            "pricingColumn": "price $1,240",
-            "title": "One Bedroom, One Bath - Renovated"
-          },
-          {
-            "unitColumn": "Unit 2638",
-            "summary": "Two Bedroom, One Bath-and-a-half - Renovated\n$1,620 \u2013 $2,760 2 Beds 1.5 Baths 1,109 Sq Ft $250 Deposit\nView Two Bedroom, One Bath-and-a-half - Renovated Floor Plan Details Tour Floor Plan\n32 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 2432 price $1,620 square feet 1,109 availibility Now view more View More Apply Now Unit 2432\nUnit 2531 price $1,620 square feet 1,109 availibility Now view more View More Apply Now Unit 2531\nUnit 2638 price $1,620 square feet 1,109 availibility Now view more View More Apply Now Unit 2638\nShow More Units (29)",
-            "sqftColumn": "square feet 1,109",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,620"
-          },
-          {
-            "summary": "Two Bedroom, Two Bath - Renovated                                                                      $1,660 \u2013 $2,730                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,150 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, Two Bath - Renovated Floor Plan Details                                         Tour Floor Plan",
-            "title": "Two Bedroom, Two Bath - Renovated"
-          },
-          {
-            "unitColumn": "Unit 1905",
-            "summary": "Unit 0203 price $1,660 square feet 1,150 availibility Now view more View More Apply Now Unit 0203\nUnit 1905 price $1,660 square feet 1,150 availibility Now view more View More Apply Now Unit 1905",
-            "sqftColumn": "square feet 1,150",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,660"
-          },
-          {
-            "summary": "Two Bedroom, Two Bath - Renovated                                                                      $1,680 \u2013 $2,860                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,205 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, Two Bath - Renovated Floor Plan Details                                         Tour Floor Plan",
-            "title": "Two Bedroom, Two Bath - Renovated"
-          },
-          {
-            "unitColumn": "Unit 2732",
-            "date": "Thu, 26 Sep 2024 00:00:00 GMT",
-            "summary": "Unit 3222 price $1,770 square feet 1,205 availibility Now view more View More Apply Now Unit 3222\nUnit 2738 price $1,680 square feet 1,205 availibility Sep 26 view more View More Apply Now Unit 2738\nUnit 2732 price $1,680 square feet 1,205 availibility Sep 26 view more View More Apply Now Unit 2732",
-            "sqftColumn": "square feet 1,205",
-            "availableColumn": "availibility Sep 26",
-            "pricingColumn": "price $1,680",
-            "title": "Unit"
-          },
-          {
-            "summary": "Two Bedroom, Two Bath - Renovated                                                                      $1,690 \u2013 $2,750                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,124 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, Two Bath - Renovated Floor Plan Details                                         Tour Floor Plan",
-            "title": "Two Bedroom, Two Bath - Renovated"
-          },
-          {
-            "unitColumn": "Unit 2511",
-            "date": "Thu, 17 Oct 2024 00:00:00 GMT",
-            "summary": "Unit 3018 price $1,690 square feet 1,124 availibility Now view more View More Apply Now Unit 3018\nUnit 2511 price $1,690 square feet 1,124 availibility Oct 17 view more View More Apply Now Unit 2511",
-            "sqftColumn": "square feet 1,124",
-            "availableColumn": "availibility Oct 17",
-            "pricingColumn": "price $1,690",
-            "title": "Unit"
-          },
-          {
-            "summary": "Two Bedroom, One Bath-and-a-half - Renovated                                                                      $1,730 \u2013 $2,880                                                                                                                                                                                                                      2 Beds                                     1.5 Baths                                         1,300 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, One Bath-and-a-half - Renovated Floor Plan Details                                         Tour Floor Plan",
-            "title": "Two Bedroom, One Bath-and-a-half - Renovated"
-          },
-          {
-            "unitColumn": "Unit 2106",
-            "summary": "Unit 0406 price $1,730 square feet 1,300 availibility Now view more View More Apply Now Unit 0406\nUnit 0808 price $1,730 square feet 1,300 availibility Now view more View More Apply Now Unit 0808\nUnit 2106 price $1,730 square feet 1,300 availibility Now view more View More Apply Now Unit 2106",
-            "sqftColumn": "square feet 1,300",
-            "title": "Unit",
-            "availableColumn": "availibility Now",
-            "pricingColumn": "price $1,730"
-          },
-          {
-            "summary": "Two Bedroom, Two Bath                                                                      $1,620 \u2013 $2,620                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,150 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, Two Bath Floor Plan Details                                         Tour Floor Plan",
-            "title": "Two Bedroom, Two Bath"
-          },
-          {
-            "unitColumn": "Unit 1803",
-            "date": "Tue, 17 Sep 2024 00:00:00 GMT",
-            "summary": "Unit 1803 price $1,620 square feet 1,150 availibility Sep 17 view more View More Apply Now Unit 1803",
-            "sqftColumn": "square feet 1,150",
-            "availableColumn": "availibility Sep 17",
-            "pricingColumn": "price $1,620",
-            "title": "Unit"
-          },
-          {
-            "summary": "Two Bedroom, One-and-a-half Bath                                                                      $1,660 \u2013 $2,710                                                                                                                                                                                                                      2 Beds                                     1.5 Baths                                         1,300 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, One-and-a-half Bath Floor Plan Details                                         Tour Floor Plan",
-            "title": "Two Bedroom, One-and-a-half Bath"
-          },
-          {
-            "unitColumn": "Unit 0608",
-            "date": "Tue, 17 Sep 2024 00:00:00 GMT",
-            "summary": "Unit 0608 price $1,660 square feet 1,300 availibility Sep 17 view more View More Apply Now Unit 0608",
-            "sqftColumn": "square feet 1,300",
-            "availableColumn": "availibility Sep 17",
-            "pricingColumn": "price $1,660",
-            "title": "Unit"
-          },
-          {
-            "summary": "Show Unavailable Floor Plans (9)"
-          },
-          {
-            "summary": "* Price shown is base rent. Excludes user-selected optional fees and variable or usage-based fees and required charges due at or prior to move-in or at move-out.                            View Fees and Policies for details.                              Price, availability, fees, and any applicable rent special are subject to change without notice.",
-            "title": "* Price shown is base rent. Excludes user-selected optional fees and variable or usage-based fees and required charges due at or prior to move-in or at move-out.                            View Fees and Policies for details.                              Price, availability, fees, and any applicable rent special are subject to change without notice."
-          },
-          {
-            "summary": "* Square footage definitions vary. Displayed square footage is approximate.",
-            "title": "* Square footage definitions vary. Displayed square footage is approximate."
-          },
-          {
-            "summary": "The fees below are based on community-supplied data and may exclude additional fees and utilities. Use the Cost Calculator to add these fees to the base price.",
-            "title": "Fees and Policies"
-          }
-        ]
-      }
-    ]
-  }
+      "type": "list",
+      "title": "The Monte - 4909 Haverwood Ln Dallas, TX 75287",
+      "items": [
+        {
+          "title": "Pricing & Floor Plans"
+        },
+        {
+          "title": "filter results by bedrooms"
+        },
+        {
+          "summary": "Estimate your monthly and one-time fees.",
+          "title": "Cost Calculator:"
+        },
+        {
+          "summary": "One Bedroom, One Bath\n$1,020 \u2013 $1,820 1 Bed 1 Bath 700 Sq Ft $250 Deposit\nView One Bedroom, One Bath Floor Plan Details Tour Floor Plan",
+          "title": "One Bedroom, One Bath"
+        },
+        {
+          "unitColumn": "Unit",
+          "title": "Unit",
+          "summary": "Unit"
+        },
+        {
+          "title": "Base Price",
+          "summary": "Base Price",
+          "pricingColumn": "Base Price"
+        },
+        {
+          "title": "Sq Ft",
+          "summary": "Sq Ft",
+          "sqftColumn": "Sq Ft"
+        },
+        {
+          "title": "Availability",
+          "summary": "Availability",
+          "availableColumn": "Availability"
+        },
+        {
+          "title": "Unit Details",
+          "summary": "Unit Details",
+          "unitDetailsColumn": "Unit Details"
+        },
+        {
+          "unitColumn": "Unit 0703",
+          "summary": "Unit 0703                        price                  $1,060                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 0703",
+          "sqftColumn": "square feet 700",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,060"
+        },
+        {
+          "unitColumn": "Unit 0711",
+          "summary": "Unit 0711                        price                  $1,130                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 0711",
+          "sqftColumn": "square feet 700",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,130"
+        },
+        {
+          "unitColumn": "Unit 2005",
+          "summary": "Unit 2005                        price                  $1,130                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 2005",
+          "sqftColumn": "square feet 700",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,130"
+        },
+        {
+          "summary": "One Bedroom, One Bath - Renovated\n$1,050 \u2013 $1,820 1 Bed 1 Bath 700 Sq Ft $250 Deposit\nView One Bedroom, One Bath - Renovated Floor Plan Details Tour Floor Plan",
+          "title": "One Bedroom, One Bath - Renovated"
+        },
+        {
+          "unitColumn": "Unit",
+          "title": "Unit",
+          "summary": "Unit"
+        },
+        {
+          "title": "Base Price",
+          "summary": "Base Price",
+          "pricingColumn": "Base Price"
+        },
+        {
+          "title": "Sq Ft",
+          "summary": "Sq Ft",
+          "sqftColumn": "Sq Ft"
+        },
+        {
+          "title": "Availability",
+          "summary": "Availability",
+          "availableColumn": "Availability"
+        },
+        {
+          "summary": "Unit Details",
+          "title": "Unit Details"
+        },
+        {
+          "unitColumn": "Unit 1008",
+          "summary": "Unit 1008                        price                  $1,070                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 1008",
+          "sqftColumn": "square feet 700",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,070"
+        },
+        {
+          "unitColumn": "Unit 0910",
+          "summary": "Unit 0910                        price                  $1,070                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 0910",
+          "sqftColumn": "square feet 700",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,070"
+        },
+        {
+          "unitColumn": "Unit 2210",
+          "summary": "Unit 2210                        price                  $1,070                                                                                       square feet                                                                               700                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Apply Now                                                          Unit 2210",
+          "sqftColumn": "square feet 700",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,070"
+        },
+        {
+          "unitColumn": "Unit 2625",
+          "summary": "One Bedroom, One Bath - Renovated\n$1,090 \u2013 $1,920 1 Bed 1 Bath 683 Sq Ft $250 Deposit\nView One Bedroom, One Bath - Renovated Floor Plan Details Tour Floor Plan\n12 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 2435 price $1,090 square feet 683 availibility Now view more View More Apply Now Unit 2435\nUnit 2823 price $1,180 square feet 683 availibility Now view more View More Apply Now Unit 2823\nUnit 2625 price $1,180 square feet 683 availibility Now view more View More Apply Now Unit 2625\nShow More Units (9)",
+          "sqftColumn": "square feet 683",
+          "title": "One Bedroom, One Bath - Renovated",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,180"
+        },
+        {
+          "unitColumn": "Unit 2824",
+          "date": "Thu, 26 Sep 2024 00:00:00 GMT",
+          "summary": "One Bedroom, One Bath - Renovated\n$1,170 \u2013 $2,020 1 Bed 1 Bath 784 Sq Ft $250 Deposit\nView One Bedroom, One Bath - Renovated Floor Plan Details Tour Floor Plan\n2 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 2816 price $1,280 square feet 784 availibility Now view more View More Apply Now Unit 2816\nUnit 2824 price $1,170 square feet 784 availibility Sep 26 view more View More Send Message",
+          "sqftColumn": "square feet 784",
+          "availableColumn": "availibility Sep 26",
+          "pricingColumn": "price $1,170",
+          "title": "One Bedroom, One Bath - Renovated"
+        },
+        {
+          "unitColumn": "Unit 0704",
+          "summary": "Unit 1214 price $1,350 square feet 950 availibility Now view more View More Apply Now Unit 1214\nUnit 1110 price $1,350 square feet 950 availibility Now view more View More Apply Now Unit 1110\nUnit 0704 price $1,350 square feet 950 availibility Now view more View More Send Message",
+          "sqftColumn": "square feet 950",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,350"
+        },
+        {
+          "unitColumn": "Unit 2723",
+          "date": "Thu, 17 Oct 2024 00:00:00 GMT",
+          "summary": "One Bedroom, One Bath - Renovated\n$1,240 \u2013 $1,990 1 Bed 1 Bath 799 Sq Ft $250 Deposit\nView One Bedroom, One Bath - Renovated Floor Plan Details Tour Floor Plan\n1 Available unit\nUnit Base Price Sq Ft Availability Unit Details\nUnit 2723 price $1,240 square feet 799 availibility Oct 17 view more View More Apply Now Unit 2723",
+          "sqftColumn": "square feet 799",
+          "availableColumn": "availibility Oct 17",
+          "pricingColumn": "price $1,240",
+          "title": "One Bedroom, One Bath - Renovated"
+        },
+        {
+          "unitColumn": "Unit 2638",
+          "summary": "Two Bedroom, One Bath-and-a-half - Renovated\n$1,620 \u2013 $2,760 2 Beds 1.5 Baths 1,109 Sq Ft $250 Deposit\nView Two Bedroom, One Bath-and-a-half - Renovated Floor Plan Details Tour Floor Plan\n32 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 2432 price $1,620 square feet 1,109 availibility Now view more View More Apply Now Unit 2432\nUnit 2531 price $1,620 square feet 1,109 availibility Now view more View More Apply Now Unit 2531\nUnit 2638 price $1,620 square feet 1,109 availibility Now view more View More Apply Now Unit 2638\nShow More Units (29)",
+          "sqftColumn": "square feet 1,109",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,620"
+        },
+        {
+          "summary": "Two Bedroom, Two Bath - Renovated                                                                      $1,660 \u2013 $2,730                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,150 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, Two Bath - Renovated Floor Plan Details                                         Tour Floor Plan",
+          "title": "Two Bedroom, Two Bath - Renovated"
+        },
+        {
+          "unitColumn": "Unit 1905",
+          "summary": "Unit 0203 price $1,660 square feet 1,150 availibility Now view more View More Apply Now Unit 0203\nUnit 1905 price $1,660 square feet 1,150 availibility Now view more View More Apply Now Unit 1905",
+          "sqftColumn": "square feet 1,150",
+          "title": "Unit",
+          "availableColumn": "availibility Now",
+          "pricingColumn": "price $1,660"
+        },
+        {
+          "summary": "Two Bedroom, Two Bath - Renovated                                                                      $1,680 \u2013 $2,860                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,205 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, Two Bath - Renovated Floor Plan Details                                         Tour Floor Plan",
+          "title": "Two Bedroom, Two Bath - Renovated"
+        },
+        {
+          "unitColumn": "Unit 2732",
+          "date": "Thu, 26 Sep 2024 00:00:00 GMT",
+          "summary": "Unit 3222 price $1,770 square feet 1,205 availibility Now view more View More Apply Now Unit 3222\nUnit 2738 price $1,680 square feet 1,205 availibility Sep 26 view more View More Apply Now Unit 2738\nUnit 2732 price $1,680 square feet 1,205 availibility Sep 26 view more View More Apply Now Unit 2732",
+          "sqftColumn": "square feet 1,205",
+          "availableColumn": "availibility Sep 26",
+          "pricingColumn": "price $1,680",
+          "title": "Unit"
+        },
+        {
+          "summary": "Two Bedroom, Two Bath - Renovated                                                                      $1,690 \u2013 $2,750                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,124 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, Two Bath - Renovated Floor Plan Details                                         Tour Floor Plan",
+          "title": "Two Bedroom, Two Bath - Renovated"
+        },
+        {
+          "unitColumn": "Unit 2511",
+          "date": "Thu, 17 Oct 2024 00:00:00 GMT",
+          "summary": "Unit 3018 price $1,690 square feet 1,124 availibility Now view more View More Apply Now Unit 3018\nUnit 2511 price $1,690 square feet 1,124 availibility Oct 17 view more View More Apply Now Unit 2511",
+          "sqftColumn": "square feet 1,124",
+          "availableColumn": "availibility Oct 17",
+          "pricingColumn": "price $1,690",
+          "title": "Unit"
+        },
+        {
+          "summary": "Two Bedroom, One Bath-and-a-half - Renovated                                                                      $1,730 \u2013 $2,880                                                                                                                                                                                                                      2 Beds                                     1.5 Baths                                         1,300 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, One Bath-and-a-half - Renovated Floor Plan Details                                         Tour Floor Plan",
+          "title": "Two Bedroom, One Bath-and-a-half - Renovated"
+        },
+        {
+          "unitColumn": "Unit 0408",
+          "date": "Wed, 17 Sep 2025 00:00:00 GMT",
+          "summary": "Unit 0808 price $1,730 square feet 1,300 availibility Now view more View More Apply Now Unit 0808\nUnit 2106 price $1,730 square feet 1,300 availibility Now view more View More Apply Now Unit 2106\nUnit 0408 price $1,730 square feet 1,300 availibility Sep 17 view more View More Apply Now Unit 0408",
+          "sqftColumn": "square feet 1,300",
+          "availableColumn": "availibility Sep 17",
+          "pricingColumn": "price $1,730",
+          "title": "Unit"
+        },
+        {
+          "summary": "Two Bedroom, Two Bath                                                                      $1,620 \u2013 $2,620                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,150 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, Two Bath Floor Plan Details                                         Tour Floor Plan",
+          "title": "Two Bedroom, Two Bath"
+        },
+        {
+          "unitColumn": "Unit 1803",
+          "date": "Wed, 17 Sep 2025 00:00:00 GMT",
+          "summary": "Unit 1803 price $1,620 square feet 1,150 availibility Sep 17 view more View More Apply Now Unit 1803",
+          "sqftColumn": "square feet 1,150",
+          "availableColumn": "availibility Sep 17",
+          "pricingColumn": "price $1,620",
+          "title": "Unit"
+        },
+        {
+          "summary": "Two Bedroom, One-and-a-half Bath                                                                      $1,660 \u2013 $2,710                                                                                                                                                                                                                      2 Beds                                     1.5 Baths                                         1,300 Sq Ft                                                                             $250 Deposit                                                                                                                                       View Two Bedroom, One-and-a-half Bath Floor Plan Details                                         Tour Floor Plan",
+          "title": "Two Bedroom, One-and-a-half Bath"
+        },
+        {
+          "unitColumn": "Unit 0608",
+          "date": "Wed, 17 Sep 2025 00:00:00 GMT",
+          "summary": "Unit 0608 price $1,660 square feet 1,300 availibility Sep 17 view more View More Apply Now Unit 0608",
+          "sqftColumn": "square feet 1,300",
+          "availableColumn": "availibility Sep 17",
+          "pricingColumn": "price $1,660",
+          "title": "Unit"
+        },
+        {
+          "summary": "Show Unavailable Floor Plans (9)"
+        },
+        {
+          "summary": "* Price shown is base rent. Excludes user-selected optional fees and variable or usage-based fees and required charges due at or prior to move-in or at move-out.                            View Fees and Policies for details.                              Price, availability, fees, and any applicable rent special are subject to change without notice.",
+          "title": "* Price shown is base rent. Excludes user-selected optional fees and variable or usage-based fees and required charges due at or prior to move-in or at move-out.                            View Fees and Policies for details.                              Price, availability, fees, and any applicable rent special are subject to change without notice."
+        },
+        {
+          "summary": "* Square footage definitions vary. Displayed square footage is approximate.",
+          "title": "* Square footage definitions vary. Displayed square footage is approximate."
+        },
+        {
+          "summary": "The fees below are based on community-supplied data and may exclude additional fees and utilities. Use the Cost Calculator to add these fees to the base price.",
+          "title": "Fees and Policies"
+        }
+      ]
+    }
+  ]
+}
