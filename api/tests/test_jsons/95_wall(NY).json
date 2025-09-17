@@ -1,0 +1,204 @@
+{
+    "request": {
+      "pageUrl": "https://www.apartments.com/95-wall-new-york-ny/b815kt8/",
+      "api": "list",
+      "version": 3
+    },
+    "objects": [
+      {
+        "diffbotUri": "list|3|2039018163",
+        "icon": "https://www.apartments.com/a/05c8f3/faviconv2.ico",
+        "pageUrl": "https://www.apartments.com/95-wall-new-york-ny/b815kt8/",
+        "type": "list",
+        "title": "95 Wall - 95 Wall St New York, NY 10005",
+        "items": [
+          {
+            "mortar-wrapper": "Studio E1YU\n$4,490 \u2013 $4,623 Studio 1 Bath 818 Sq Ft\nView Studio E1YU Floor Plan Details\n3 Available units",
+            "title": "Studio E1YU",
+            "summary": "Studio E1YU                                                                      $4,490 \u2013 $4,623                                                                                                                                                                                                                      Studio                                     1 Bath                                         818 Sq Ft                                                                                                                                                                           View Studio E1YU Floor Plan Details                                                                          3 Available units"
+          },
+          {
+            "date": "Mon, 28 Oct 2024 00:00:00 GMT",
+            "summary": "Unit 01-304 price $4,623 square feet 818 availibility Now view more View More Send Message\nUnit 01-504 price $4,514 square feet 818 availibility Oct 28 view more View More Send Message\nUnit 01-1504 price $4,490 square feet 818 availibility Oct 31 view more View More Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-304 price $4,623 square feet 818 availibility Now view more View More Send Message\nUnit 01-504 price $4,514 square feet 818 availibility Oct 28 view more View More Send Message\nUnit 01-1504 price $4,490 square feet 818 availibility Oct 31 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1YM\n$4,487 Studio 1 Bath 694 Sq Ft\nView Studio E1YM Floor Plan Details\n1 Available unit",
+            "title": "Studio E1YM",
+            "summary": "Studio E1YM                                                                      $4,487                                                                                                                                                                                                                      Studio                                     1 Bath                                         694 Sq Ft                                                                                                                                                                           View Studio E1YM Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Fri, 20 Sep 2024 00:00:00 GMT",
+            "summary": "Unit 01-514                        price                  $4,487                                                                                       square feet                                                                               694                                                                                                                                                                                                                                                                                                       availibility                                              Sep 20                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-514 price $4,487 square feet 694 availibility Sep 20 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1ZA\n$4,608 Studio 1 Bath 931 Sq Ft\nView Studio E1ZA Floor Plan Details\n1 Available unit",
+            "title": "Studio E1ZA",
+            "summary": "Studio E1ZA                                                                      $4,608                                                                                                                                                                                                                      Studio                                     1 Bath                                         931 Sq Ft                                                                                                                                                                           View Studio E1ZA Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Fri, 20 Sep 2024 00:00:00 GMT",
+            "summary": "Unit 01-1724                        price                  $4,608                                                                                       square feet                                                                               931                                                                                                                                                                                                                                                                                                       availibility                                              Sep 20                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-1724 price $4,608 square feet 931 availibility Sep 20 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1K\n$3,761 Studio 1 Bath 475 Sq Ft\nView Studio E1K Floor Plan Details\n1 Available unit",
+            "title": "Studio E1K",
+            "summary": "Studio E1K                                                                      $3,761                                                                                                                                                                                                                      Studio                                     1 Bath                                         475 Sq Ft                                                                                                                                                                           View Studio E1K Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Fri, 27 Sep 2024 00:00:00 GMT",
+            "summary": "Unit 01-917                        price                  $3,761                                                                                       square feet                                                                               475                                                                                                                                                                                                                                                                                                       availibility                                              Sep 27                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-917 price $3,761 square feet 475 availibility Sep 27 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1Y\n$3,992 \u2013 $4,252 Studio 1 Bath 575 Sq Ft\nView Studio E1Y Floor Plan Details\n2 Available units",
+            "title": "Studio E1Y",
+            "summary": "Studio E1Y                                                                      $3,992 \u2013 $4,252                                                                                                                                                                                                                      Studio                                     1 Bath                                         575 Sq Ft                                                                                                                                                                           View Studio E1Y Floor Plan Details                                                                          2 Available units"
+          },
+          {
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-1708 price $4,252 square feet 575 availibility Oct 1 view more View More Send Message\nUnit 01-1908 price $3,992 square feet 575 availibility Oct 20 view more View More Send Message",
+            "date": "Tue, 01 Oct 2024 00:00:00 GMT",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1YG\n$4,313 \u2013 $4,394 Studio 1 Bath 618 Sq Ft\nView Studio E1YG Floor Plan Details\n2 Available units",
+            "title": "Studio E1YG",
+            "summary": "Studio E1YG                                                                      $4,313 \u2013 $4,394                                                                                                                                                                                                                      Studio                                     1 Bath                                         618 Sq Ft                                                                                                                                                                           View Studio E1YG Floor Plan Details                                                                          2 Available units"
+          },
+          {
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-609 price $4,313 square feet 618 availibility Oct 3 view more View More Send Message\nUnit 01-809 price $4,394 square feet 618 availibility Oct 9 view more View More Send Message",
+            "date": "Thu, 03 Oct 2024 00:00:00 GMT",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1YD\n$4,125 \u2013 $4,242 Studio 1 Bath 591 Sq Ft\nView Studio E1YD Floor Plan Details\n2 Available units",
+            "title": "Studio E1YD",
+            "summary": "Studio E1YD                                                                      $4,125 \u2013 $4,242                                                                                                                                                                                                                      Studio                                     1 Bath                                         591 Sq Ft                                                                                                                                                                           View Studio E1YD Floor Plan Details                                                                          2 Available units"
+          },
+          {
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-208 price $4,242 square feet 591 availibility Oct 4 view more View More Send Message\nUnit 01-708 price $4,125 square feet 591 availibility Oct 16 view more View More Send Message",
+            "date": "Fri, 04 Oct 2024 00:00:00 GMT",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1U\n$3,805 Studio 1 Bath 533 Sq Ft\nView Studio E1U Floor Plan Details\n1 Available unit",
+            "title": "Studio E1U",
+            "summary": "Studio E1U                                                                      $3,805                                                                                                                                                                                                                      Studio                                     1 Bath                                         533 Sq Ft                                                                                                                                                                           View Studio E1U Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Wed, 09 Oct 2024 00:00:00 GMT",
+            "summary": "Unit 01-1815                        price                  $3,805                                                                                       square feet                                                                               533                                                                                                                                                                                                                                                                                                       availibility                                              Oct 9                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-1815 price $3,805 square feet 533 availibility Oct 9 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1C\n$3,646 Studio 1 Bath 453 Sq Ft\nView Studio E1C Floor Plan Details\n1 Available unit",
+            "title": "Studio E1C",
+            "summary": "Studio E1C                                                                      $3,646                                                                                                                                                                                                                      Studio                                     1 Bath                                         453 Sq Ft                                                                                                                                                                           View Studio E1C Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Mon, 21 Oct 2024 00:00:00 GMT",
+            "summary": "Unit 01-1402                        price                  $3,646                                                                                       square feet                                                                               453                                                                                                                                                                                                                                                                                                       availibility                                              Oct 21                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-1402 price $3,646 square feet 453 availibility Oct 21 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1P\n$3,742 Studio 1 Bath 487 Sq Ft\nView Studio E1P Floor Plan Details\n1 Available unit",
+            "title": "Studio E1P",
+            "summary": "Studio E1P                                                                      $3,742                                                                                                                                                                                                                      Studio                                     1 Bath                                         487 Sq Ft                                                                                                                                                                           View Studio E1P Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Tue, 22 Oct 2024 00:00:00 GMT",
+            "summary": "Unit 01-1116                        price                  $3,742                                                                                       square feet                                                                               487                                                                                                                                                                                                                                                                                                       availibility                                              Oct 22                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-1116 price $3,742 square feet 487 availibility Oct 22 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1M\n$3,742 Studio 1 Bath 477 Sq Ft\nView Studio E1M Floor Plan Details\n1 Available unit",
+            "title": "Studio E1M",
+            "summary": "Studio E1M                                                                      $3,742                                                                                                                                                                                                                      Studio                                     1 Bath                                         477 Sq Ft                                                                                                                                                                           View Studio E1M Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Tue, 22 Oct 2024 00:00:00 GMT",
+            "summary": "Unit 01-2219                        price                  $3,742                                                                                       square feet                                                                               477                                                                                                                                                                                                                                                                                                       availibility                                              Oct 22                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-2219 price $3,742 square feet 477 availibility Oct 22 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1I\n$3,647 Studio 1 Bath 472 Sq Ft\nView Studio E1I Floor Plan Details\n1 Available unit",
+            "title": "Studio E1I",
+            "summary": "Studio E1I                                                                      $3,647                                                                                                                                                                                                                      Studio                                     1 Bath                                         472 Sq Ft                                                                                                                                                                           View Studio E1I Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Tue, 05 Nov 2024 00:00:00 GMT",
+            "summary": "Unit 01-719                        price                  $3,647                                                                                       square feet                                                                               472                                                                                                                                                                                                                                                                                                       availibility                                              Nov 5                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-719 price $3,647 square feet 472 availibility Nov 5 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1YH\n$4,207 Studio 1 Bath 623 Sq Ft\nView Studio E1YH Floor Plan Details\n1 Available unit",
+            "title": "Studio E1YH",
+            "summary": "Studio E1YH                                                                      $4,207                                                                                                                                                                                                                      Studio                                     1 Bath                                         623 Sq Ft                                                                                                                                                                           View Studio E1YH Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Mon, 11 Nov 2024 00:00:00 GMT",
+            "summary": "Unit 01-825                        price                  $4,207                                                                                       square feet                                                                               623                                                                                                                                                                                                                                                                                                       availibility                                              Nov 11                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-825 price $4,207 square feet 623 availibility Nov 11 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Studio E1Z\n$4,087 Studio 1 Bath 576 Sq Ft\nView Studio E1Z Floor Plan Details\n1 Available unit",
+            "title": "Studio E1Z",
+            "summary": "Studio E1Z                                                                      $4,087                                                                                                                                                                                                                      Studio                                     1 Bath                                         576 Sq Ft                                                                                                                                                                           View Studio E1Z Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-910 price $4,087 square feet 576 availibility Jan 8, 2026 view more View More Send Message",
+            "title": "Unit",
+            "summary": "Unit 01-910                        price                  $4,087                                                                                       square feet                                                                               576                                                                                                                                                                                                                                                                                                       availibility                                              Jan 8, 2026                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message"
+          },
+          {
+            "mortar-wrapper": "One Bedroom A1C\n$5,321 1 Bed 1 Bath 711 Sq Ft\nView One Bedroom A1C Floor Plan Details\n1 Available unit",
+            "title": "One Bedroom A1C",
+            "summary": "One Bedroom A1C                                                                      $5,321                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         711 Sq Ft                                                                                                                                                                           View One Bedroom A1C Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-1721 price $5,321 square feet 711 availibility Now view more View More Send Message",
+            "title": "Unit",
+            "summary": "Unit 01-1721                        price                  $5,321                                                                                       square feet                                                                               711                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message"
+          },
+          {
+            "mortar-wrapper": "One Bedroom A1B\n$5,231 \u2013 $5,336 1 Bed 1 Bath 678 Sq Ft\nView One Bedroom A1B Floor Plan Details\n4 Available units",
+            "title": "One Bedroom A1B",
+            "summary": "One Bedroom A1B                                                                      $5,231 \u2013 $5,336                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         678 Sq Ft                                                                                                                                                                           View One Bedroom A1B Floor Plan Details                                                                          4 Available units"
+          },
+          {
+            "date": "Thu, 19 Sep 2024 00:00:00 GMT",
+            "summary": "Unit 01-512 price $5,332 square feet 678 availibility Sep 19 view more View More Send Message\nUnit 01-612 price $5,231 square feet 678 availibility Sep 26 view more View More Send Message\nUnit 01-912 price $5,252 square feet 678 availibility Oct 15 view more View More Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-512 price $5,332 square feet 678 availibility Sep 19 view more View More Send Message\nUnit 01-612 price $5,231 square feet 678 availibility Sep 26 view more View More Send Message\nUnit 01-912 price $5,252 square feet 678 availibility Oct 15 view more View More Send Message\nShow More Units (1)",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Two Bedroom B2B\n$7,372 2 Beds 2 Baths 1,079 Sq Ft\nView Two Bedroom B2B Floor Plan Details\n1 Available unit",
+            "title": "Two Bedroom B2B",
+            "summary": "Two Bedroom B2B                                                                      $7,372                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,079 Sq Ft                                                                                                                                                                           View Two Bedroom B2B Floor Plan Details                                                                          1 Available unit"
+          },
+          {
+            "date": "Wed, 06 Nov 2024 00:00:00 GMT",
+            "summary": "Unit 01-1007                        price                  $7,372                                                                                       square feet                                                                               1,079                                                                                                                                                                                                                                                                                                       availibility                                              Nov 6                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+            "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 01-1007 price $7,372 square feet 1,079 availibility Nov 6 view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "mortar-wrapper": "Show Unavailable Floor Plans (54)",
+            "summary": "Show Unavailable Floor Plans (54)"
+          }
+        ]
+      }
+    ]
+  }

@@ -91,7 +91,7 @@ def make_blob(item: Dict[str, Any]) -> str:
         "sqftColumn",
         "availableColumnInnerContainer",
         "availableColumn",
-        "title",
+        "title", "btn" #added for 2000 post case to classify as unit if it is "send message"
     ]:
      
         val = item.get(key)
@@ -123,6 +123,8 @@ def is_unit_row(item: Dict[str, Any], blob: str) -> bool:
     has_price = "price" in blob or "$" in blob
     has_sqft = "sq ft" in blob
     if has_price and has_sqft and "availability" in blob:
+        return True
+    if "Send Message" in blob or "send message" in blob: #added to broaden definition of a unit, send message usually means its a unit not floor plan
         return True
     return False
 
@@ -180,10 +182,14 @@ def _range_from_regex(pattern: re.Pattern, blob: str) -> Tuple[Optional[int], Op
     return (lo, hi)
 
 def _plan_name_from(title: str, blob: str) -> str:
+    
     if title and title not in GENERIC_TITLES and not RE_AVAIL_COUNT.search(title):
         return title.strip()
     m = re.search(r"^(.*?)(?:\s*\$|\s*\d+\s*Bed|\s*Studio\b)", blob, re.I)
     candidate = (m.group(1) if m else blob).strip(" -:|")
+    #Studio case fpr maa
+    if not candidate and m and m.group(0):
+        candidate = m.group(0)
     return candidate[:80] if candidate else "Unnamed Plan"
 
 def _parse_date_maybe(s: Optional[str]) -> Optional[str]:
@@ -236,21 +242,26 @@ def extract_plan(item: Dict[str, Any], blob: str, source_url: Optional[str]) -> 
 #function to parse dict item to see if there are multiple units, and split them to individual units
 def split_unit(blob: str)-> str:
     #find all matches with unit x price, this appears once per unit so we can use it to split da 
-    matches = re.finditer(r"Unit\s*\w*\s*price\s*", blob, re.I)
+    matches = re.finditer(r"Unit\s*[\w\-]+\s*price\s*", blob, re.I)
     markers = []
     #loop through iterator obj and save all starting indexes for unit matches
     for match in matches:
         markers.append(match.start())
 
+    #if there are no markers then this is a one off, meaning only one unit in the list so return it
+    if not markers:
+        return [blob]
     units = []
     #loop through all starting markers
     for i in range(len(markers)):
+        #if first unit capture begnining to it for floor plan
+        if i == 0 and markers[i]!=0:
+            units.append(blob[0:markers[i]])
         #if there is an unit after this one add substring of this unit start to that unit start to the list of units
-        if i+1< len(markers):
+        elif i+1< len(markers):
             units.append(blob[markers[i]:markers[i+1]])
         else: #if last unit take substring from start of unit to end of blob
             units.append(blob[markers[i]::])
-
     return units
 
 def extract_unit(item: Dict[str, Any], blob: str, current_plan: Optional[str], source_url: Optional[str]) -> Unit:
@@ -259,8 +270,19 @@ def extract_unit(item: Dict[str, Any], blob: str, current_plan: Optional[str], s
 
     unit_id = None
     mid = RE_UNIT_ID.search(blob)
+
+    name_holder =""
+     #if no name found extract begning of blob until dollar sign
+    loc = re.search(r"\s*\$([\d,]+)",blob)
+    if loc:
+        name_holder = blob[0:loc.start()]
+    #print("NAME:"+name_holder)
+   
     if mid:
         unit_id = mid.group(1)
+    else:
+        unit_id = name_holder
+        
 
     # Prefer explicit "price $X", else first $N
     price = None
@@ -291,6 +313,8 @@ def extract_unit(item: Dict[str, Any], blob: str, current_plan: Optional[str], s
         availability_date = _parse_date_maybe(availability_raw)
         if availability_raw.lower() == "now":
             availability_date = date.today().isoformat()
+
+   
 
     return Unit(
         unit_id=unit_id,
@@ -344,9 +368,7 @@ def parse_apartments_items(items: List[Dict[str, Any]], source_url: Optional[str
             continue
 
         kind = classify_item(item, blob)
-    
         if kind == "plan_header":
-        
             plan = extract_plan(item, blob, source_url)
             plans.append(plan)
             report["plans_found"] += 1
@@ -355,10 +377,22 @@ def parse_apartments_items(items: List[Dict[str, Any]], source_url: Optional[str
 
         elif kind == "unit_row":
             split_units = split_unit(blob)
+            #if the length of units is more than 1 assume the first item is floor plan info
+            if  current_plan_name == None and len(split_units)>100 and "Send Message" not in split_units[0]:
+                #extract plan from the first item
+                plan = extract_plan(item, split_units[0], source_url)
+                plans.append(plan)
+                report["plans_found"] += 1
+                current_plan_name = plan.plan_name
+                last_plan_obj = plan
+                #remove first item so that we dont have a floor plan unit entry
+                split_units = split_units[1::]
+
             for split_unit_blob in split_units:
                 unit = extract_unit(item, split_unit_blob, current_plan_name, source_url)
                 units.append(unit)
                 report["units_found"] += 1
+            current_plan_name = None
             #if last_plan_obj:
                 #widen_plan_ranges_with_unit(last_plan_obj, unit)
             if not last_plan_obj:#else:

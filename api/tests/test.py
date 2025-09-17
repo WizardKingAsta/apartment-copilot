@@ -15,13 +15,16 @@ for json_name in os.listdir(json_folder_path):
         tests[json_name] = data
 
 for key, value in tests.items():
-    print(f"Test for for {key}:\n")
+    print(f"\nTest for for {key}:\n")
     objects = tests[key]["objects"][0]
     items = objects["items"]
     units = []
     #if key == "garrison.json":
+    #if "(NY)" in key:
+    seen = set()
     plans, units, rep = parse_apartments_items(items)
    
     for el in units:
-        #if el.plan_name_ref == 'A1':
-        print(el)
+        if el.unit_id not in seen:
+            print(el)
+        seen.add(el.unit_id)
