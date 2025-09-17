@@ -42,4 +42,48 @@ END OF DAY NOTES:
     Sophiloren: mstakes A1s as E1 rest correct
     Garrison: Double entries for everything
     maa: does not pull any names, only ctaches units that are part of floor plans with >=3 units, single offs dont get hit.
-    Monte: 
+    Monte: Contains doubles, "misses one-and-half-bath" name
+
+    ISSUE: Only pulling units in groups of >=3
+        List call only extracts repeating patters. FOr the case of single entries, rip what info you can under  a "base" unit.
+
+        examples: 
+        maa:
+        {
+          "date": "Fri, 04 Oct 2024 00:00:00 GMT",
+          "summary": "Studio 0x1 652-877 SF                                                                      $1,490 \u2013 $2,270                                                                                                                                                                                                                      Studio                                     1 Bath                                         662 Sq Ft                                                                                                                                                                           View Studio 0x1 652-877 SF Floor Plan Details                                         Tour Floor Plan",
+          "title": "Unit"
+        },
+
+        200Post:
+         {
+            "date": "Wed, 25 Sep 2024 00:00:00 GMT",
+            "summary": "Ellis (E1A) - Short Term                                                                      $3,154                                                                                                                                                                                                                      Studio                                     1 Bath                                         475 Sq Ft                                                                                                                                                                           View Ellis (E1A) - Short Term Floor Plan Details",
+            "title": "Ellis (E1A) - Short Term",
+            "btn": "Send Message"
+          },
+
+          goal here is to find similarities of : where thes ego in control flow, how to direct them properly, how to extract propery.
+
+          STEP 1: add "send message" as indicator of unit so both go down the elif kind == unit flow.
+            adjusted make blob to includ btn
+          STEP 2: broaden unit extract to include info from one offs
+            curently extract does not get one offs because split unit makes a mistake
+            Returned [blob] (original) if there were no seperate units detected
+          STEP 3: try to fill i name and unit id as best as possible for one offs
+                filled in by extracting until price (ln 270)
+        ISSUE: Bayside village does no extract names propleru for single offs, also is only extractng one per flor plan type, not catching patterns
+            The names get cut out for the units info for som eof them
+            Seems like its getting lost in unit split
+        SOLVE: edited split function reg ex to include - so we can pull all units
+
+        ISSUE: names not pulled for bayside
+            singles  and triples pull, not doubles. for all
+        SOLVE: Theres typicaly a "base" unit thats mpstly empty before groups of three. If we can find that and extract floor plan from it we lit.
+
+        ISSUES: There are reapeats for garrison and 95 WALL and monte, sometimes the first unit gets put as the plan_name ref (blocked that by making len>100 in the if statement to not go down that flow)
+        SOLVE: Used a duplicate set for the double entries
+
+        END OF THE DAY: Almost all apartments are getting digested, only picking on of the two for groups of 2, and the plane_name is finickey, unit names work as intended
+
+

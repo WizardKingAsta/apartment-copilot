@@ -1,0 +1,75 @@
+{
+    "request": {
+      "pageUrl": "https://www.apartments.com/halletts-point-astoria-ny/1j2c5h6/",
+      "api": "list",
+      "version": 3
+    },
+    "objects": [
+      {
+        "diffbotUri": "list|3|-1004092618",
+        "icon": "https://www.apartments.com/a/05c8f3/faviconv2.ico",
+        "pageUrl": "https://www.apartments.com/halletts-point-astoria-ny/1j2c5h6/",
+        "type": "list",
+        "title": "Halletts Point - 10, 20, 30 Halletts Pt Astoria, NY 11102",
+        "items": [
+          {
+            "date": "Tue, 16 Sep 2025 22:00:00 GMT",
+            "summary": "View 20 HLP - 1 Bed/1 Bath Floor Plan Details Tour Floor Plan",
+            "title": "20 HLP - 1 Bed/1 Bath"
+          },
+          {
+            "summary": "Unit 2601 price $3,356 square feet 1 availibility Now view more View More Send Message\nUnit 1809 price $3,568 square feet 1 availibility Now view more View More Send Message\nUnit PH03 price $3,937 square feet 1 availibility Now view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "summary": "View 30 HLP - 1 Bedroom / 1 Bathroom Floor Plan Details                                         Tour Floor Plan",
+            "title": "30 HLP - 1 Bedroom / 1 Bathroom"
+          },
+          {
+            "summary": "Unit 706 price $3,392 square feet 1 availibility Now view more View More Send Message\nUnit 704 price $3,415 square feet 1 availibility Now view more View More Send Message\nUnit 1602 price $3,519 square feet 1 availibility Now view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "summary": "View 10 HLP - 1 Bedroom/1 Bath Floor Plan Details                                         Tour Floor Plan",
+            "title": "10 HLP - 1 Bedroom/1 Bath"
+          },
+          {
+            "summary": "Unit PH9 price $3,455 square feet 1 availibility Now view more View More Send Message\nUnit 2104 price $4,070 square feet 1 availibility Now view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "summary": "View 30 HLP - 2 Bedroom / 1 Bathroom Floor Plan Details                                         Tour Floor Plan",
+            "title": "30 HLP - 2 Bedroom / 1 Bathroom"
+          },
+          {
+            "summary": "Unit 910 price $4,566 square feet 1 availibility Now view more View More Send Message\nUnit 721 price $4,569 square feet 1 availibility Now view more View More Send Message\nUnit 812 price $5,198 square feet 1 availibility Now view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "summary": "View 20 HLP - 2 Bedroom / 2 Bathroom Floor Plan Details                                         Tour Floor Plan",
+            "title": "20 HLP - 2 Bedroom / 2 Bathroom"
+          },
+          {
+            "summary": "Unit 702 price $4,689 square feet 1 availibility Now view more View More Send Message\nUnit 2404 price $5,492 square feet 1 availibility Now view more View More Send Message\nUnit 2411 price $6,294 square feet 1 availibility Now view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "summary": "View 30 HLP - 2 Bedroom / 2 Bathroom Floor Plan Details                                         Tour Floor Plan",
+            "title": "30 HLP - 2 Bedroom / 2 Bathroom"
+          },
+          {
+            "summary": "Unit 703 price $5,611 square feet 1 availibility Now view more View More Send Message\nUnit 3108 price $6,270 square feet 1 availibility Now view more View More Send Message",
+            "title": "Unit"
+          },
+          {
+            "summary": "Pet policies are negotiable.\nDogs Allowed\nNo fees required\nRestrictions:\nPlease inquire about weight restrictions and pet fees. Cats Allowed\nNo fees required\nRestrictions:\nPlease inquire about restrictions and pet fees.",
+            "title": "Details"
+          },
+          {
+            "date": "Tue, 24 Dec 2024 00:00:00 GMT",
+            "title": "Property Information"
+          }
+        ]
+      }
+    ]
+  }

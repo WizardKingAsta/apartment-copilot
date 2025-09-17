@@ -1,0 +1,70 @@
+{
+    "request": {
+      "pageUrl": "https://www.apartments.com/2000-post-san-francisco-ca/mrb74sk/",
+      "api": "list",
+      "version": 3
+    },
+    "objects": [
+      {
+        "diffbotUri": "list|3|1968552329",
+        "icon": "https://www.apartments.com/a/05c8f3/faviconv2.ico",
+        "pageUrl": "https://www.apartments.com/2000-post-san-francisco-ca/mrb74sk/",
+        "type": "list",
+        "title": "2000 Post - 2000 Post St San Francisco, CA 94115",
+        "items": [
+          {
+            "title": "filter results by bedrooms"
+          },
+          {
+            "title": "Cost Calculator:",
+            "summary": "Estimate your monthly and one-time fees.",
+            "btn": "View More"
+          },
+          {
+            "title": "Unit",
+            "summary": "Ellis (E1A)\n$2,998 \u2013 $3,290 Studio 1 Bath 475 Sq Ft\nView Ellis (E1A) Floor Plan Details\n9 Available units\nUnit Base Price Sq Ft Availability Unit Details\nUnit 430 price $2,998 square feet 475 availibility Now view more View More Send Message\nUnit 447 price $3,051 square feet 475 availibility Now view more View More Send Message\nUnit 454 price $3,210 square feet 475 availibility Now view more View More Send Message\nShow More Units (6)",
+            "btn": "Send Message"
+          },
+          {
+            "date": "Wed, 25 Sep 2024 00:00:00 GMT",
+            "summary": "Ellis (E1A) - Short Term                                                                      $3,154                                                                                                                                                                                                                      Studio                                     1 Bath                                         475 Sq Ft                                                                                                                                                                           View Ellis (E1A) - Short Term Floor Plan Details",
+            "title": "Ellis (E1A) - Short Term",
+            "btn": "Send Message"
+          },
+          {
+            "date": "Wed, 20 Nov 2024 00:00:00 GMT",
+            "summary": "Vallejo (E1C)                                                                      $3,061                                                                                                                                                                                                                      Studio                                     1 Bath                                         475 Sq Ft                                                                                                                                                                           View Vallejo (E1C) Floor Plan Details",
+            "title": "Vallejo (E1C)",
+            "btn": "Send Message"
+          },
+          {
+            "date": "Thu, 10 Oct 2024 00:00:00 GMT",
+            "summary": "Pierce (A1A)                                                                      $3,676                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         625 Sq Ft                                                                                                                                                                           View Pierce (A1A) Floor Plan Details",
+            "title": "Pierce (A1A)",
+            "btn": "Send Message"
+          },
+          {
+            "date": "Wed, 06 Nov 2024 00:00:00 GMT",
+            "summary": "Pierce (A1A) - Short Term                                                                      $3,871                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         625 Sq Ft                                                                                                                                                                           View Pierce (A1A) - Short Term Floor Plan Details",
+            "title": "Pierce (A1A) - Short Term",
+            "btn": "Send Message"
+          },
+          {
+            "date": "Fri, 13 Dec 2024 00:00:00 GMT",
+            "summary": "Three Bedroom C2A22                                                                      $5,113                                                                                                                                                                                                                      3 Beds                                     2 Baths                                         970 Sq Ft                                                                                                                                                                           View Three Bedroom C2A22 Floor Plan Details",
+            "title": "Three Bedroom C2A22",
+            "btn": "Send Message"
+          },
+          {
+            "summary": "Show Unavailable Floor Plans (34)"
+          },
+          {
+            "title": "2000 Post"
+          },
+          {
+            "title": "https://my.matterport.com/show/?m=rsZYCfH8JMj&brand=0&play=1&wh=0&qs=1"
+          }
+        ]
+      }
+    ]
+  }
