@@ -6,56 +6,69 @@
   },
   "objects": [
     {
-      "diffbotUri": "list|3|231885538",
+      "diffbotUri": "list|3|232721728",
       "icon": "https://www.apartments.com/a/05c8f3/faviconv2.ico",
       "pageUrl": "https://www.apartments.com/the-garrison-dallas-tx/wq62bwh/",
       "type": "list",
       "title": "The Garrison - 9911 Whitehurst Dr Dallas, TX 75243",
       "items": [
         {
-          "mortar-wrapper": "A3 Traditional\n$870 \u2013 $880 1 Bed 1 Bath 717 Sq Ft $150 Deposit\nView A3 Traditional Floor Plan Details Tour Floor Plan\n3 Available units",
-          "title": "A3 Traditional",
-          "summary": "A3 Traditional                                                                      $870 \u2013 $880                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         717 Sq Ft                                                                             $150 Deposit                                                                                                                                       View A3 Traditional Floor Plan Details                                         Tour Floor Plan"
+          "mortar-wrapper": "A1 Classic\n$700 Studio 1 Bath 443 Sq Ft $150 Deposit\nView A1 Classic Floor Plan Details Tour Floor Plan\n1 Available unit",
+          "title": "1 Available unit",
+          "summary": "A1 Classic                                                                      $700                                                                                                                                                                                                                      Studio                                     1 Bath                                         443 Sq Ft                                                                             $150 Deposit                                                                                                                                       View A1 Classic Floor Plan Details                                         Tour Floor Plan"
         },
         {
-          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0419 price $880 square feet 717 availibility Now view more View More Send Message\nUnit 0311 price $870 square feet 717 availibility Sep 23 view more View More Send Message\nUnit 0303 price $880 square feet 717 availibility Nov 8 view more View More Send Message",
-          "date": "Mon, 23 Sep 2024 00:00:00 GMT",
+          "date": "Fri, 08 Nov 2024 00:00:00 GMT",
+          "summary": "Unit 0313                        price                  $700                                                                                       square feet                                                                               443                                                                                                                                                                                                                                                                                                       availibility                                              Nov 8                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
+          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0313 price $700 square feet 443 availibility Nov 8 view more View More Send Message",
           "title": "Unit"
         },
         {
-          "mortar-wrapper": "A4 Traditional\n$950 1 Bed 1 Bath 821 Sq Ft $150 Deposit\nView A4 Traditional Floor Plan Details Tour Floor Plan\n1 Available unit",
-          "title": "A4 Traditional",
+          "mortar-wrapper": "A4 Traditional\n$950 1 Bed 1 Bath 821 Sq Ft $150 Deposit\nView A4 Traditional Floor Plan Details Tour Floor Plan\n2 Available units",
+          "title": "2 Available units",
           "summary": "A4 Traditional                                                                      $950                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         821 Sq Ft                                                                             $150 Deposit                                                                                                                                       View A4 Traditional Floor Plan Details                                         Tour Floor Plan"
         },
         {
-          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0508 price $950 square feet 821 availibility Now view more View More Send Message",
+          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0508 price $950 square feet 821 availibility Now view more View More Send Message\nUnit 0513 price $950 square feet 821 availibility Now view more View More Send Message",
           "title": "Unit",
-          "summary": "Unit 0508                        price                  $950                                                                                       square feet                                                                               821                                                                                                                                                                                                                                                                                                       availibility                                              Now                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message"
+          "summary": "Unit 0508 price $950 square feet 821 availibility Now view more View More Send Message\nUnit 0513 price $950 square feet 821 availibility Now view more View More Send Message"
         },
         {
-          "mortar-wrapper": "A2 Traditional\n$770 \u2013 $780 1 Bed 1 Bath 553 Sq Ft $150 Deposit\nView A2 Traditional Floor Plan Details Tour Floor Plan\n3 Available units",
-          "title": "A2 Traditional",
-          "summary": "A2 Traditional                                                                      $770 \u2013 $780                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         553 Sq Ft                                                                             $150 Deposit                                                                                                                                       View A2 Traditional Floor Plan Details                                         Tour Floor Plan"
+          "mortar-wrapper": "A3 Traditional\n$870 \u2013 $890 1 Bed 1 Bath 717 Sq Ft $150 Deposit\nView A3 Traditional Floor Plan Details Tour Floor Plan\n3 Available units",
+          "title": "3 Available units",
+          "summary": "A3 Traditional                                                                      $870 \u2013 $890                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         717 Sq Ft                                                                             $150 Deposit                                                                                                                                       View A3 Traditional Floor Plan Details                                         Tour Floor Plan"
+        },
+        {
+          "date": "Mon, 23 Sep 2024 00:00:00 GMT",
+          "summary": "Unit 0311 price $870 square feet 717 availibility Sep 23 view more View More Send Message\nUnit 0815 price $870 square feet 717 availibility Nov 8 view more View More Send Message\nUnit 0427 price $890 square feet 717 availibility Dec 6 view more View More Send Message",
+          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0311 price $870 square feet 717 availibility Sep 23 view more View More Send Message\nUnit 0815 price $870 square feet 717 availibility Nov 8 view more View More Send Message\nUnit 0427 price $890 square feet 717 availibility Dec 6 view more View More Send Message",
+          "title": "Unit"
+        },
+        {
+          "mortar-wrapper": "A2 Traditional\n$770 1 Bed 1 Bath 553 Sq Ft $150 Deposit\nView A2 Traditional Floor Plan Details Tour Floor Plan\n3 Available units",
+          "title": "3 Available units",
+          "summary": "A2 Traditional                                                                      $770                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         553 Sq Ft                                                                             $150 Deposit                                                                                                                                       View A2 Traditional Floor Plan Details                                         Tour Floor Plan"
         },
         {
           "date": "Fri, 27 Sep 2024 00:00:00 GMT",
-          "summary": "Unit 0233 price $770 square feet 553 availibility Sep 27 view more View More Send Message\nUnit 1009 price $770 square feet 553 availibility Oct 25 view more View More Send Message\nUnit 0805 price $780 square feet 553 availibility Dec 6 view more View More Send Message",
-          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0233 price $770 square feet 553 availibility Sep 27 view more View More Send Message\nUnit 1009 price $770 square feet 553 availibility Oct 25 view more View More Send Message\nUnit 0805 price $780 square feet 553 availibility Dec 6 view more View More Send Message",
+          "summary": "Unit 0233 price $770 square feet 553 availibility Sep 27 view more View More Send Message\nUnit 1009 price $770 square feet 553 availibility Oct 25 view more View More Send Message\nUnit 0105 price $770 square feet 553 availibility Dec 6 view more View More Send Message",
+          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0233 price $770 square feet 553 availibility Sep 27 view more View More Send Message\nUnit 1009 price $770 square feet 553 availibility Oct 25 view more View More Send Message\nUnit 0105 price $770 square feet 553 availibility Dec 6 view more View More Send Message",
           "title": "Unit"
         },
         {
           "mortar-wrapper": "A4 Classic\n$935 1 Bed 1 Bath 821 Sq Ft $150 Deposit\nView A4 Classic Floor Plan Details Tour Floor Plan\n1 Available unit",
-          "title": "A4 Classic",
+          "title": "1 Available unit",
           "summary": "A4 Classic                                                                      $935                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         821 Sq Ft                                                                             $150 Deposit                                                                                                                                       View A4 Classic Floor Plan Details                                         Tour Floor Plan"
         },
         {
+          "date": "Wed, 02 Oct 2024 00:00:00 GMT",
+          "summary": "Unit 0507                        price                  $935                                                                                       square feet                                                                               821                                                                                                                                                                                                                                                                                                       availibility                                              Oct 2                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
           "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0507 price $935 square feet 821 availibility Oct 2 view more View More Send Message",
-          "title": "Unit",
-          "summary": "Unit 0507                        price                  $935                                                                                       square feet                                                                               821                                                                                                                                                                                                                                                                                                       availibility                                              Oct 2                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message"
+          "title": "Unit"
         },
         {
           "mortar-wrapper": "A3 Classic\n$845 1 Bed 1 Bath 717 Sq Ft $150 Deposit\nView A3 Classic Floor Plan Details Tour Floor Plan\n2 Available units",
-          "title": "A3 Classic",
+          "title": "2 Available units",
           "summary": "A3 Classic                                                                      $845                                                                                                                                                                                                                      1 Bed                                     1 Bath                                         717 Sq Ft                                                                             $150 Deposit                                                                                                                                       View A3 Classic Floor Plan Details                                         Tour Floor Plan"
         },
         {
@@ -66,7 +79,7 @@
         },
         {
           "mortar-wrapper": "B3 Classic\n$1,350 2 Beds 2 Baths 1,240 Sq Ft $250 Deposit\nView B3 Classic Floor Plan Details Tour Floor Plan\n1 Available unit",
-          "title": "B3 Classic",
+          "title": "1 Available unit",
           "summary": "B3 Classic                                                                      $1,350                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,240 Sq Ft                                                                             $250 Deposit                                                                                                                                       View B3 Classic Floor Plan Details                                         Tour Floor Plan"
         },
         {
@@ -76,38 +89,39 @@
         },
         {
           "mortar-wrapper": "B3 Traditional\n$1,375 \u2013 $1,385 2 Beds 2 Baths 1,240 Sq Ft $250 Deposit\nView B3 Traditional Floor Plan Details Tour Floor Plan\n3 Available units",
-          "title": "B3 Traditional",
+          "title": "3 Available units",
           "summary": "B3 Traditional                                                                      $1,375 \u2013 $1,385                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,240 Sq Ft                                                                             $250 Deposit                                                                                                                                       View B3 Traditional Floor Plan Details                                         Tour Floor Plan"
         },
         {
-          "date": "Wed, 18 Sep 2024 00:00:00 GMT",
-          "summary": "Unit 1205 price $1,385 square feet 1,240 availibility Now view more View More Send Message\nUnit 1201 price $1,385 square feet 1,240 availibility Sep 18 view more View More Send Message\nUnit 0518 price $1,375 square feet 1,240 availibility Dec 6 view more View More Send Message",
-          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 1205 price $1,385 square feet 1,240 availibility Now view more View More Send Message\nUnit 1201 price $1,385 square feet 1,240 availibility Sep 18 view more View More Send Message\nUnit 0518 price $1,375 square feet 1,240 availibility Dec 6 view more View More Send Message",
+          "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 1205 price $1,385 square feet 1,240 availibility Now view more View More Send Message\nUnit 1201 price $1,385 square feet 1,240 availibility Now view more View More Send Message\nUnit 0518 price $1,375 square feet 1,240 availibility Dec 6 view more View More Send Message",
+          "date": "Fri, 06 Dec 2024 00:00:00 GMT",
           "title": "Unit"
         },
         {
           "mortar-wrapper": "B1 Traditional\n$1,210 2 Beds 2 Baths 871 Sq Ft $250 Deposit\nView B1 Traditional Floor Plan Details Tour Floor Plan\n1 Available unit",
-          "title": "B1 Traditional",
+          "title": "1 Available unit",
           "summary": "B1 Traditional                                                                      $1,210                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         871 Sq Ft                                                                             $250 Deposit                                                                                                                                       View B1 Traditional Floor Plan Details                                         Tour Floor Plan"
         },
         {
+          "date": "Sat, 20 Sep 2025 00:00:00 GMT",
+          "summary": "Unit 0706                        price                  $1,210                                                                                       square feet                                                                               871                                                                                                                                                                                                                                                                                                       availibility                                              Sep 20                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
           "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 0706 price $1,210 square feet 871 availibility Sep 20 view more View More Send Message",
-          "title": "Unit",
-          "summary": "Unit 0706                        price                  $1,210                                                                                       square feet                                                                               871                                                                                                                                                                                                                                                                                                       availibility                                              Sep 20                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message"
+          "title": "Unit"
         },
         {
           "mortar-wrapper": "B2 Traditional\n$1,250 2 Beds 2 Baths 1,034 Sq Ft $250 Deposit\nView B2 Traditional Floor Plan Details Tour Floor Plan\n1 Available unit",
-          "title": "B2 Traditional",
+          "title": "1 Available unit",
           "summary": "B2 Traditional                                                                      $1,250                                                                                                                                                                                                                      2 Beds                                     2 Baths                                         1,034 Sq Ft                                                                             $250 Deposit                                                                                                                                       View B2 Traditional Floor Plan Details                                         Tour Floor Plan"
         },
         {
+          "date": "Sat, 30 Nov 2024 00:00:00 GMT",
+          "summary": "Unit 1108                        price                  $1,250                                                                                       square feet                                                                               1,034                                                                                                                                                                                                                                                                                                       availibility                                              Nov 30                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message",
           "mortar-wrapper": "Unit Base Price Sq Ft Availability Unit Details\nUnit 1108 price $1,250 square feet 1,034 availibility Nov 30 view more View More Send Message",
-          "title": "Unit",
-          "summary": "Unit 1108                        price                  $1,250                                                                                       square feet                                                                               1,034                                                                                                                                                                                                                                                                                                       availibility                                              Nov 30                                                                                                                                                                                                                                                                           view more                                             View More                                                                                                                                                                                                 Send Message"
+          "title": "Unit"
         },
         {
-          "mortar-wrapper": "Show Unavailable Floor Plans (9)",
-          "summary": "Show Unavailable Floor Plans (9)"
+          "mortar-wrapper": "Show Unavailable Floor Plans (8)",
+          "summary": "Show Unavailable Floor Plans (8)"
         }
       ]
     }

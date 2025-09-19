@@ -355,6 +355,9 @@ def parse_apartments_items(items: List[Dict[str, Any]], source_url: Optional[str
         "notes": [f"parser={PARSE_VERSION}"],
     }
 
+     #SDet used to dedupe before sending out units
+    dedupe_units = set()
+
     current_plan_name: Optional[str] = None
     last_plan_obj: Optional[FloorPlan] = None
     #Loops over all items in json, key point
@@ -362,6 +365,7 @@ def parse_apartments_items(items: List[Dict[str, Any]], source_url: Optional[str
         #Call to make a blob on the info in the item
         #print("\n ITEM:")
         #print(item)
+
         blob = make_blob(item)
         if not blob:
             report["noise_items"] += 1
@@ -378,7 +382,7 @@ def parse_apartments_items(items: List[Dict[str, Any]], source_url: Optional[str
         elif kind == "unit_row":
             split_units = split_unit(blob)
             #if the length of units is more than 1 assume the first item is floor plan info
-            if  current_plan_name == None and len(split_units)>100 and "Send Message" not in split_units[0]:
+            if  is_plan_header(item,split_units[0]) and len(split_units)>1 and "Send Message" not in split_units[0]:
                 #extract plan from the first item
                 plan = extract_plan(item, split_units[0], source_url)
                 plans.append(plan)
@@ -390,7 +394,9 @@ def parse_apartments_items(items: List[Dict[str, Any]], source_url: Optional[str
 
             for split_unit_blob in split_units:
                 unit = extract_unit(item, split_unit_blob, current_plan_name, source_url)
-                units.append(unit)
+                if unit.unit_id not in dedupe_units:
+                    units.append(unit)
+                    dedupe_units.add(unit.unit_id)
                 report["units_found"] += 1
             current_plan_name = None
             #if last_plan_obj:

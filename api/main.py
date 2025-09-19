@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from pydantic import BaseModel,HttpUrl
 from collections import deque
+from typing import Dict, List
 import sqlite3
 import asyncio
 import json
@@ -54,6 +55,17 @@ class Status(Enum):
 class Popular_Sites(Enum):
     APARTMENTS_DOT_COM = "apartments.com"
     APARTMENT_LIST = "apartmentlist.com"
+
+APARTMENT_CONSTRAINTS={
+    "min_sqft": 200,
+    "max_sqft": 4000,
+    "min_rent": 300,
+    "max_rent": 7000,
+    "min_beds": 0.0,
+    "max_beds": 3,
+    "min_baths": 0.5,
+    "max_baths": 4.0
+}
 
 #create a link model with HttpUrl for validation
 class LinkIn(BaseModel):
@@ -172,12 +184,54 @@ def get_queue():
         raise HTTPException(status_code= 409, detail="Could Not Fetch Queued Items!") 
     return []
 
+def rank_units():
+    return 5
+
+#Function intakes all units list and dictionary of floor plans to minimze the units to ones that fit insde user constaints (ie. correct num beds, sq ft, price etc)
+def filter_units(floor_plans: Dict[str, FloorPlan], units: List[Unit]):
+    filtered_units_final = []
+
+    for unit in units:
+        plan = floor_plans[unit.plan_name_ref] if unit.plan_name_ref in floor_plans else None
+
+        #Check if unit and plan are fully populated, and important factors fall within constraints
+        if (plan and ((unit.price is not None) and APARTMENT_CONSTRAINTS["min_rent"]<=unit.price<=APARTMENT_CONSTRAINTS["max_rent"]) 
+            and ((unit.sqft is not None) and APARTMENT_CONSTRAINTS["min_sqft"]<=unit.sqft<= APARTMENT_CONSTRAINTS["max_sqft"])
+            and ((plan.beds is not None) and (APARTMENT_CONSTRAINTS["min_beds"]<=plan.beds<= APARTMENT_CONSTRAINTS["max_beds"]))
+            and ((plan.baths is not None) and APARTMENT_CONSTRAINTS["min_baths"]<=plan.baths<= APARTMENT_CONSTRAINTS["max_baths"])):
+            filtered_units_final.append((unit, plan))
+   
+    return filtered_units_final
+
+
 def extract_Apartments_Dot_Com_Json(json):
     #Separates out object and items array from json
     obj = json["objects"][0]
     items = obj["items"]
 
-    parse_apartments_items(items)
+    #set to dedupe
+    seen = set()
+
+    #Dictionary
+    floor_plans = {}
+
+    #Use apartment.com parser to get lists of floor plans and units
+    plans, units, report = parse_apartments_items(items)
+
+    #Iterate through floor plans and add to dictionary 
+    for plan in plans:
+        if plan.plan_name and plan.plan_name not in floor_plans:
+            floor_plans[plan.plan_name] = plan
+
+    #print the title of the current apartment complex
+    print(obj["title"]+"\n\n")
+
+    filtered_units = filter_units(floor_plans, units)
+
+    for u, p in filtered_units:
+        print(u)
+        print(p)
+        print("\n\n")
 
     repPrice = None
     rep_beds = None
@@ -208,7 +262,7 @@ async def parserLoop():
 
             if Popular_Sites.APARTMENTS_DOT_COM.value in item[2]:
                 #print(extract_Apartments_Dot_Com_Json(raw))
-                print(json.dumps(raw, indent=2))
+                extract_Apartments_Dot_Com_Json(raw)
                 #Update status to parsed if no issues arised
                 update_status(item[0],Status.PARSED.value, "")
             elif Popular_Sites.APARTMENT_LIST.value in item[2]:
