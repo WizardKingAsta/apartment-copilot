@@ -86,4 +86,38 @@ END OF DAY NOTES:
 
         END OF THE DAY: Almost all apartments are getting digested, only picking on of the two for groups of 2, and the plane_name is finickey, unit names work as intended
 
+        Added dedupe to apartments.com parser, injests floor plans and units, filters out empty units, and units that breach containts.
+
+        END OF THE DAY: Most plans and units seem to get processed, constraints filter well, till not getting all units, proly 70-80%.
+        NEXT: Ranking the filtered apartments.
+
+        Created scoring, returns top 5 sorted from filtered units. So no matter what filtered units will return the top 5 or less (if not 5 units) units per link
+
+        END OF THE DAY: Some sights return no filterd units, need to determine if the isue is becauyse nothing is parsed, if reqs are too strict, or if it ejects in a loop condiiton (most lilkey)
+
+        found issue was in dat availability boolean
+
+        added a conversion to datetime if the availabiloity date was a str
+
+        now returns filtered list of units that fit in prefs with their scores.
+
+        NEXT: Figureout how to rank top 5 apartments across alll links -> figure out how to send them to frontend -> display them
+
+        Was able to create a count of links and add them to master list. Also propgates errors from diff bot and makes sure code deos not just fail.
+        Current issue: Not all links are returning units, this seems to be on diffbot side where for some sights it pick up units vs for other sit picks up reviews
+
+        Add fields to diffbot call to see if it works better
+        -- still a bit slow. 
+
+        Moving forward now, in the future we can revisit parser to handle BOTH :review jsons AND not picking up single or double lisgtings for some
+
+        ISSUE: need to get the information from top 5 back to front end
+        SOLVE: add the data to the get/queue that gets hit during the poll
+
+        END OF DAY: Moved on 60% parse success. Now when the polling ends, it calls a result endpoint. If maaster list is empty this correctly returns and error, otherwise it returns the data in a json {"data" : array}.
+
+        NEXT: Make sure polling and board refreash have not been inhibited by addition of prmoise, and displau results when available.
+
+
+
 

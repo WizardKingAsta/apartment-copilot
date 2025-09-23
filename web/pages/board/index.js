@@ -10,6 +10,7 @@ let globalPollingInfo = {
 };
 
 
+
 function timeMath(serverTime, createTime){
     if(!serverTime){
         return "Could Not locate Server Time"
@@ -115,6 +116,7 @@ export default function Board(){
     const start = Date.now();
 
 async function createPoll(){
+    return new Promise((resolve) => {
     //Clear existing iterval to ensure successful unmount later
     clearInterval(pollInterval.current)
     //Create poll interval to keep refreshing board while we analyze
@@ -125,7 +127,7 @@ async function createPoll(){
 
         //Check if work is still being done by seeing if any of the db items are in queue or fetching (ie not parsed already)
         const stillProcessing = freshData.some(
-            listing => listing[4] === 'queued' || listing[4] === 'fetching' || listing[4] === 'pending'
+            listing => listing[4] === 'queued' || listing[4] === 'fetching(NO)' || listing[4] === 'pending'
         );
 
         //Stop refreshibg if that is the case
@@ -133,21 +135,23 @@ async function createPoll(){
             clearInterval(pollInterval.current)
             setIsFetching(false)
             globalPollingInfo.isFetching = false
-        }
+            resolve()
+        }   
     }, INTERVAL);
+    }); // close promise
     }
-    
     //function calls outside function while keeping re4act features
     const handleAnalysis = async() => {
         //Change is fetching to true to disable the analysis buton
         setIsFetching(true)
         globalPollingInfo.isFetching = true;
-    
 
         //Call analysis function which sets all pending -> queued
         const result = await apiAnalysis()
         // uses funcinon to create a poll every INTERVAL var seconds
-        createPoll()
+        await createPoll();
+        const response = await fetchAPI("/api/results")
+        console.log(response.json())
         
     }
 
