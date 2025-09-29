@@ -118,6 +118,30 @@ END OF DAY NOTES:
 
         NEXT: Make sure polling and board refreash have not been inhibited by addition of prmoise, and displau results when available.
 
+        ISSUE: Polling is p much useless while we request from diff bot
+        SOLVE: added new method of getting parser info, using aiohttp instead of requests
+
+        Polling seems to work, results are being passed through /api/results as intended
+
+        NOW: Display results 
+
+        END OF DAU: polling seems to work, the data gets passed up to api route
+        
+        NEXT: Have to make sure results array gets saved, currently gets reloaded when state does, also the scores of the top 5 are the same so may need to make a more granular metric
+
+        SOLVE: Was able to edit all the types to make sure they dont raise object error, displays resultsArray when it exists, shows the top 5 ranking.
+
+        ISSUE: Algorithm ranks everything the same, meaning rn its only filtering shit out. 
+        SOLVE: changed price scale to just the max constraint for now
+
+        END OF DAY: You can submit links, most will get parsed, some will return an error. Whent the top 5 gets computed, it gets passed up to the front end. Displays results like regular text.
+
+        NEXT: Make results in a pop so it doesnt crowd board, connect to runIds so we can persist in db, maybe fine tune algorithm.
+
+        END OF DAY: added modal pop up for results, added pref panel with input (they go no where) and changes analysis to be POST and carry with it the prefs (empty rn)
+
+        NEXT: Attach panel to actually save input->Have the front end send down the user prefs, which are by default empty values->Use these and fill in default values to compute. 
+
 
 
 
