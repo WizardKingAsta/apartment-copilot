@@ -4,6 +4,7 @@ from collections import deque
 from typing import Dict, List
 import sqlite3
 import asyncio
+import aiohttp
 import json
 import time
 from datetime import datetime, timezone
@@ -83,7 +84,7 @@ WEIGHTS={
 
 link_count = 0
 
-PRICE_SCALE = max(0.2*APARTMENT_CONSTRAINTS["max_rent"],600)
+PRICE_SCALE = APARTMENT_CONSTRAINTS["max_rent"]
 SQFT_SCALE = max(0.2*APARTMENT_CONSTRAINTS["min_sqft"],150)
 TAU_DAYS=14
 
@@ -97,6 +98,15 @@ class LinkOut(BaseModel):
     id: UUID
     status: str
     created_at: datetime
+class Preferences(BaseModel):
+    preferences: str
+    '''minPrice: str
+    maxPrice: str
+    minSqft: str
+    maxSqft: str
+    beds: str
+    baths: str'''
+
 
 #Retuyrns health of the app
 @app.get("/health")
@@ -230,7 +240,7 @@ def score_unit(unit_price, unit_sqft, unit_avail):
     return WEIGHTS["w_price"]*price_u + WEIGHTS["w_sqft"]*sqft_u + WEIGHTS["w_flags"]*flags_u + WEIGHTS["w_avail"]*avail_u
 
 #Function intakes all units list and dictionary of floor plans to minimze the units to ones that fit insde user constaints (ie. correct num beds, sq ft, price etc)
-def filter_units(floor_plans: Dict[str, FloorPlan], units: List[Unit]):
+def filter_units(floor_plans: Dict[str, FloorPlan], units: List[Unit], title):
     filtered_units_final = []
 
     for unit in units:
@@ -250,7 +260,7 @@ def filter_units(floor_plans: Dict[str, FloorPlan], units: List[Unit]):
             if unit_score<0 or unit_score>1:
                 print("ERROR, invalid score")
             else:
-                filtered_units_final.append((unit, plan, unit_score))
+                filtered_units_final.append((unit, plan, unit_score, title))
     #return all untis that fit in preference bounds with their score
     return filtered_units_final
 
@@ -285,7 +295,7 @@ def extract_Apartments_Dot_Com_Json(json):
     #print the title of the current apartment complex
     #print(obj["title"]+"\n\n")
 
-    filtered_units = filter_units(floor_plans, units)
+    filtered_units = filter_units(floor_plans, units, obj['title'])
 
     return filtered_units
 masterList = []
@@ -294,6 +304,16 @@ total_link_count = 0
 
 def normalize_Apartment_List(raw):
     return "AList"
+
+#async function to allow api calls while using parser:
+async def get_parser_data(url):
+    #use aiohttp instead of requests for better concurencey
+    async with aiohttp.ClientSession() as session:
+        #Get response using client
+        async with session.get(f"{DIFF_BOT_API}&url={url}&fields=items(summary,mortar-wrapper,unitColumn,pricingColumn,sqftColumn,availableColumn,availableColumnInnerContainer,title,date)") as response:
+            raw = await response.json()
+    #return json of parse
+    return raw
 
 #Always working loop to turn queued items into parsed items
 async def parserLoop():
@@ -308,8 +328,12 @@ async def parserLoop():
 
 
             #call diff bot api for link style parse
-            response = requests.get(f"{DIFF_BOT_API}&url={item[2]}&fields=items(summary,mortar-wrapper,unitColumn,pricingColumn,sqftColumn,availableColumn,availableColumnInnerContainer,title,date)")
-            raw = response.json()
+            #response = requests.get(f"{DIFF_BOT_API}&url={item[2]}&fields=items(summary,mortar-wrapper,unitColumn,pricingColumn,sqftColumn,availableColumn,availableColumnInnerContainer,title,date)")
+            #raw = response.json()
+
+            #Call async function to get data while allowing api calls
+            raw = await get_parser_data(item[2])
+
             if not raw:
                 update_status(item[0],Status.ERROR.value, "DIffBot did not Parse")
 
@@ -318,7 +342,8 @@ async def parserLoop():
                 #If result is an array append it
                 #print(type(res)) USED TO TEST RETURN TYPE TO TRACK DOWN IF ERROR IS IN FILTER OR PARSER
                 if res and type(res) == list:
-                    masterList.append(res.copy())
+                    #Changed from append -> extend to flatten
+                    masterList.extend(res.copy())
                     total_link_count-=1
 
                         #Update status to parsed if no issues arised
@@ -346,9 +371,10 @@ async def parserLoop():
         #sleep an wait for more work
         await asyncio.sleep(5)
 
-#User gets results
-@app.get("/analysis")
-async def analyze():
+#User gets results, this is a post call because it carries with it user inputted prefs
+@app.post("/analysis")
+async def analyze(payload: Preferences):
+    print(payload)
     global total_link_count, masterList
     #Set all items in db to queued
     cursor.execute('''
@@ -365,13 +391,21 @@ async def analyze():
 @app.get("/results")
 def return_results():
     global masterList
+    refined_list = []
+    results = []
+    print(len(masterList))
     if len(masterList)>0:
-        sorted(masterList, key=lambda x: x[2], reverse=True)
+        masterList= sorted(masterList, key=lambda x: x[2], reverse=True)
         if len(masterList)<5:
-            return  {"data":masterList}
-        return {"data":masterList[0:5]}
+            refined_list=masterList
+        else:
+            refined_list = masterList[0:5]
+        #Extract only useful info
+        for unit,fp,score,title in refined_list:
+            results.append([str(title), str(unit.unit_id), str(unit.plan_name_ref), int(unit.price), int(unit.sqft), float(fp.beds), float(fp.baths), str(unit.availability_date), float(score)])
+        return {"data":results}
     return {"Error":"No Results to show"}
 
-
+# return format [Complex Name, Unit, Floorplan, Price, sqft, bed, bath, avail_date, score]
 
 

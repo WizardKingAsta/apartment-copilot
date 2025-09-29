@@ -1,5 +1,6 @@
 "use client"; //import use client to ensure client side (api route is server side which helsp prevent CORS error of direct API route from here)
 import React, {useState, useEffect, useRef} from 'react';
+//import Modal from 'react-modal'
 import {useRouter} from 'next/router';
 
 // Set up API route for board anlysis
@@ -51,10 +52,14 @@ async function fetchAPI(TARGET){
 }
 
 
-async function apiAnalysis(){
+async function apiAnalysis(prefData){
     //Set all links to fetching
-        //fill in
-    const response = await fetch(A_TARGET)
+        //Changed method to post to carry user prefs in with it
+    const response = await fetch(A_TARGET, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({'data': prefData})
+    })
     //reload board
     return response
 }   
@@ -80,9 +85,18 @@ export default function Board(){
     // create poll interval with useRef so it can be accessed across areas and is mutable
     const pollInterval = useRef(null)
 
+    // arr for the results from the analysis
+    const [resultsArray, setResultsArray] = useState([]);
+
+    //Set up boolean to know whether or not to show modal
+    const [showModal, setShowModal] = useState(false);
     
     //Next router to return Home
     const router = useRouter();
+
+    useEffect(() => {
+        console.log("resultsArray updated:", resultsArray);
+      }, [resultsArray]);
    //useEffect to load board data whens ite is opebed
     useEffect(()=>{
       
@@ -127,7 +141,7 @@ async function createPoll(){
 
         //Check if work is still being done by seeing if any of the db items are in queue or fetching (ie not parsed already)
         const stillProcessing = freshData.some(
-            listing => listing[4] === 'queued' || listing[4] === 'fetching(NO)' || listing[4] === 'pending'
+            listing => listing[4] === 'queued' || listing[4] === 'fetching' || listing[4] === 'pending'
         );
 
         //Stop refreshibg if that is the case
@@ -147,11 +161,23 @@ async function createPoll(){
         globalPollingInfo.isFetching = true;
 
         //Call analysis function which sets all pending -> queued
-        const result = await apiAnalysis()
+        const result = await apiAnalysis("Price: 100")
         // uses funcinon to create a poll every INTERVAL var seconds
         await createPoll();
+
         const response = await fetchAPI("/api/results")
-        console.log(response.json())
+        const info = await response.json()
+
+        if('data' in info){
+            console.log("here")
+            setResultsArray(info.data)
+            
+
+        }else{
+            setResultsArray([])
+        }
+        setShowModal(true)
+
         
     }
 
@@ -162,6 +188,37 @@ async function createPoll(){
         <button onClick={loadBoardData}>Refresh</button>
         <button onClick ={() => router.back()}>Go Back</button>
         <button disabled = {globalPollingInfo.isFetching} onClick = {handleAnalysis}>Analysis</button>
+        <div style = {{display:'flex', top:'0'}}>
+           <div style= {{width: '300px', overflow:'hidden', marginLeft: 'auto', border: '1px solid black'}}>
+            {
+                <div>
+                <div><label>Min Price: <input type="number"/></label> </div>
+                <div><label>Max Price: <input type="number"/></label> </div>
+                <div><label>Min Sqft: <input type="number"/></label> </div>
+                <div><label>Max Sqft: <input type="number"/></label> </div>
+                <div><label>Beds: <input type="number"/></label> </div>
+                <div><label>Baths: <input type="number"/></label> </div>
+                </div>
+            }
+            </div>
+            
+        </div>
+        {showModal && (
+            <div onClick={()=> setShowModal(false)}
+            style= {{position: 'fixed', top: 0, left: 0, right:0, bottom: 0, background: 'rgba(0,0,0,0.5)', display:'flex', alignItems:'center', justifyContent:'center'}}>
+            <div onClick={(e) => e.stopPropagation()}
+                style = {{background: 'white', padding:'2rem', borderRadius:'8px', maxWidth: '800px', maxHeight: '80vh', overflow:'auto'}}>
+            <h2>Top 5 Results</h2>
+            {resultsArray.length >0 ?(resultsArray.map((rating) => (
+                <div key = {rating[0]}>
+                    <h2>Complex:{rating[0]} | Unit Number:{rating[1]} | Floor Plan: {rating[2]} | Rent:{rating[3]} | SqFt:{rating[4]} | Beds:{rating[5]} | Bath:{rating[6]} | Available:{rating[7]} | Score:{rating[8]}</h2>
+                </div>
+            ))): <h2> No Results To Show</h2>}
+            <button onClick={() => setShowModal(false)}>Close</button>
+            </div>
+        </div>
+        )
+        }
         <h1>Board</h1>
         {boardLoading ? (
             <h2>Loading...</h2>

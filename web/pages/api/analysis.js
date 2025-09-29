@@ -4,9 +4,14 @@ const TARGET = API_BASE + "/analysis";
 
 //Functino to hand api communication
 export default async function handler(request, res){
-    if (request.method == 'GET'){
+    if (request.method == 'POST'){
     try{
-        const response = await fetch(TARGET);
+        console.log(request.body.data)
+        const response = await fetch(TARGET,{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({preferences: request.body.data})
+        });
         const message = await response.json();
         console.log("in api/route")
         
