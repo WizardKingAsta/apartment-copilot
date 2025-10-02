@@ -58,7 +58,7 @@ async function apiAnalysis(prefData){
     const response = await fetch(A_TARGET, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({'data': prefData})
+        body: JSON.stringify(prefData)
     })
     //reload board
     return response
@@ -90,6 +90,17 @@ export default function Board(){
 
     //Set up boolean to know whether or not to show modal
     const [showModal, setShowModal] = useState(false);
+
+    // Set up hashmap to hold preferences: values default to null
+    const [preferences, setPreferences] = useState({
+        minPrice: 0,
+        maxPrice: 7000,
+        minSqft: 300,
+        maxSqft: 2000,
+        beds: 1,
+        baths: 1
+
+    })
     
     //Next router to return Home
     const router = useRouter();
@@ -161,7 +172,7 @@ async function createPoll(){
         globalPollingInfo.isFetching = true;
 
         //Call analysis function which sets all pending -> queued
-        const result = await apiAnalysis("Price: 100")
+        const result = await apiAnalysis(preferences)
         // uses funcinon to create a poll every INTERVAL var seconds
         await createPoll();
 
@@ -181,7 +192,30 @@ async function createPoll(){
         
     }
 
+    // Function to handle submit and handle populating preference dictionary when user changes prefs
+    function handlePrefSubmit (e){
+        e.preventDefault();
+        // load data into new form
+        const data = new FormData(e.target);
+        const prefs = Object.fromEntries(data.entries());
+        
+        // create a tmp dict to hold all of the valid inputs 
+        const tmp = {}
+        // loop through all elements in form and add them to dict if they are valid
+        for(const [key,value] of Object.entries(prefs)){
+        //Make sure there is min price entry and it is valid
+        if(value != "" && !isNaN(parseInt(value))){
+            tmp[key] = parseInt(value)
+            }
+        }       
 
+        //Replace old values with all valid inputs and keep previous if otherwise
+        setPreferences(prev=> ({
+        ...prev,
+        ...tmp
+        }))
+        console.log(preferences)
+    }
 
 
     return (<div>
@@ -191,14 +225,15 @@ async function createPoll(){
         <div style = {{display:'flex', top:'0'}}>
            <div style= {{width: '300px', overflow:'hidden', marginLeft: 'auto', border: '1px solid black'}}>
             {
-                <div>
-                <div><label>Min Price: <input type="number"/></label> </div>
-                <div><label>Max Price: <input type="number"/></label> </div>
-                <div><label>Min Sqft: <input type="number"/></label> </div>
-                <div><label>Max Sqft: <input type="number"/></label> </div>
-                <div><label>Beds: <input type="number"/></label> </div>
-                <div><label>Baths: <input type="number"/></label> </div>
-                </div>
+                <form id="prefs-form" onSubmit={handlePrefSubmit}>
+                <div><label>Min Price: <input type="number" name="minPrice"/></label> </div>
+                <div><label>Max Price: <input type="number" name="maxPrice"/></label> </div>
+                <div><label>Min Sqft: <input type="number" name="minSqft"/></label> </div>
+                <div><label>Max Sqft: <input type="number" name="maxSqft"/></label> </div>
+                <div><label>Beds: <input type="number" name="beds"/></label> </div>
+                <div><label>Baths: <input type="number" name="baths"/></label> </div>
+                <button type="submit">Apply Changes</button>
+                </form>
             }
             </div>
             
