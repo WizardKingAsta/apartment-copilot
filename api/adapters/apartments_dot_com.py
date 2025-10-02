@@ -151,6 +151,7 @@ def _to_int(s: Optional[str]) -> Optional[int]:
 
     #remove deposit if the value passed in was deposit
     s = s.replace("Deposit","")
+    s = s.replace("deposit","")
 
     return int(s)
 

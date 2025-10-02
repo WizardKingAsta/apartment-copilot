@@ -99,13 +99,12 @@ class LinkOut(BaseModel):
     status: str
     created_at: datetime
 class Preferences(BaseModel):
-    preferences: str
-    '''minPrice: str
-    maxPrice: str
-    minSqft: str
-    maxSqft: str
-    beds: str
-    baths: str'''
+    minPrice: int
+    maxPrice: int
+    minSqft: int
+    maxSqft: int
+    beds: int
+    baths: int
 
 
 #Retuyrns health of the app
@@ -374,12 +373,20 @@ async def parserLoop():
 #User gets results, this is a post call because it carries with it user inputted prefs
 @app.post("/analysis")
 async def analyze(payload: Preferences):
-    print(payload)
+    # pull in link count and global list to ensure they are ready for use later to store all parsed info and keep track of how many weve done
     global total_link_count, masterList
+    #set batch id
+    batch = str(uuid4())
+    #turn Preferences object to dict for json dumping
+    preference_json = json.dumps(payload.dict())
     #Set all items in db to queued
     cursor.execute('''
-        UPDATE linksubmissions SET status = ? WHERE status = ?
-''', (Status.QUEUED.value, Status.PENDING.value))
+        UPDATE linksubmissions 
+        SET status = ?,
+            batch_id = ?,
+            prefs = ?
+        WHERE status = ?
+''', (Status.QUEUED.value, batch, preference_json, Status.PENDING.value))
     #Mark count of rows updated
     count = cursor.rowcount
     conn.commit()

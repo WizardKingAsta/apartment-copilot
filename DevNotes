@@ -142,6 +142,11 @@ END OF DAY NOTES:
 
         NEXT: Attach panel to actually save input->Have the front end send down the user prefs, which are by default empty values->Use these and fill in default values to compute. 
 
+        SOLVE: added batch id to the entries. So when u click analysis, all links with 'pending' status get the same batch id and prefs passed down from frontend. 
 
+        END OF DAY: When user applies changes, they pass down values with click of analysis. In backend, all links that were pending at time of click get the same batch id and prefs that were passed down
+
+        NEXT: figure out how to pass the preferences to ranker instead of globals, ensure that links in the same batch get ranked tg.
+        
 
 

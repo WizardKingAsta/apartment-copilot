@@ -15,6 +15,9 @@ def initialize_databse():
                    CHECK (status IN ('pending','queued','fetching','parsed','error')),
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                    
+            batch_id TEXT,
+            prefs TEXT NOT NULL DEFAULT '{}',
+                   
             price_monthly INTEGER,
             beds FLOAT,
             baths FLOAT,

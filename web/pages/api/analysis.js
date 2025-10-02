@@ -6,11 +6,12 @@ const TARGET = API_BASE + "/analysis";
 export default async function handler(request, res){
     if (request.method == 'POST'){
     try{
-        console.log(request.body.data)
+        const prefs = request.body
+        console.log(prefs)
         const response = await fetch(TARGET,{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({preferences: request.body.data})
+            body: JSON.stringify(prefs)
         });
         const message = await response.json();
         console.log("in api/route")
