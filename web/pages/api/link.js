@@ -11,12 +11,12 @@ export default async function handler(request, response){
         res.setHeader('Allow', 'POST');
         return res.status(405).json({detail: "Method not allows (in api/link)"});
     }
-
     //make sure of reeuest is non empty
     let body = request.body;                                     
     if (!body || typeof body !== "object") {
         return response.status(400).json({ detail: "Invalid JSON (api/link)" });
     }
+    console.log(body.text)
     // check to ensure right type and presence of url
     const url = body.url;                                  
     if (!url || typeof url !== "string") {

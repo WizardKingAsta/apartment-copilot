@@ -93,10 +93,10 @@ export default function Board(){
 
     // Set up hashmap to hold preferences: values default to null
     const [preferences, setPreferences] = useState({
-        minPrice: 0,
-        maxPrice: 7000,
-        minSqft: 300,
-        maxSqft: 2000,
+        min_rent: 0,
+        max_rent: 7000,
+        min_sqft: 300,
+        max_sqft: 2000,
         beds: 1,
         baths: 1
 
@@ -219,52 +219,66 @@ async function createPoll(){
 
 
     return (<div>
-        <button onClick={loadBoardData}>Refresh</button>
-        <button onClick ={() => router.back()}>Go Back</button>
-        <button disabled = {globalPollingInfo.isFetching} onClick = {handleAnalysis}>Analysis</button>
-        <div style = {{display:'flex', top:'0'}}>
+        <button className="btn btn-text"onClick={loadBoardData}>Refresh</button>
+        <button className="btn btn-text" onClick ={() => router.back()}>Go Back</button>
+        <button className="btn btn-accent" disabled = {globalPollingInfo.isFetching} onClick = {handleAnalysis}>Analysis</button>
+        <div className="board-wrap" style = {{display:'flex', top:'0'}}>
+            
+        <aside className='prefs-panel'>
            <div style= {{width: '300px', overflow:'hidden', marginLeft: 'auto', border: '1px solid black'}}>
             {
                 <form id="prefs-form" onSubmit={handlePrefSubmit}>
-                <div><label>Min Price: <input type="number" name="minPrice"/></label> </div>
-                <div><label>Max Price: <input type="number" name="maxPrice"/></label> </div>
-                <div><label>Min Sqft: <input type="number" name="minSqft"/></label> </div>
-                <div><label>Max Sqft: <input type="number" name="maxSqft"/></label> </div>
+                <div><label>Min Price: <input type="number" name="min_rent"/></label> </div>
+                <div><label>Max Price: <input type="number" name="max_rent"/></label> </div>
+                <div><label>Min Sqft: <input type="number" name="min_sqft"/></label> </div>
+                <div><label>Max Sqft: <input type="number" name="max_sqft"/></label> </div>
                 <div><label>Beds: <input type="number" name="beds"/></label> </div>
                 <div><label>Baths: <input type="number" name="baths"/></label> </div>
-                <button type="submit">Apply Changes</button>
+                <button className='btn btn-text' type="submit">Apply Changes</button>
                 </form>
             }
-            </div>
+            
             
         </div>
+        </aside>
+
         {showModal && (
+            <div className="modal">
             <div onClick={()=> setShowModal(false)}
             style= {{position: 'fixed', top: 0, left: 0, right:0, bottom: 0, background: 'rgba(0,0,0,0.5)', display:'flex', alignItems:'center', justifyContent:'center'}}>
             <div onClick={(e) => e.stopPropagation()}
                 style = {{background: 'white', padding:'2rem', borderRadius:'8px', maxWidth: '800px', maxHeight: '80vh', overflow:'auto'}}>
             <h2>Top 5 Results</h2>
+            <div className='modal-content'>
             {resultsArray.length >0 ?(resultsArray.map((rating) => (
                 <div key = {rating[0]}>
                     <h2>Complex:{rating[0]} | Unit Number:{rating[1]} | Floor Plan: {rating[2]} | Rent:{rating[3]} | SqFt:{rating[4]} | Beds:{rating[5]} | Bath:{rating[6]} | Available:{rating[7]} | Score:{rating[8]}</h2>
                 </div>
             ))): <h2> No Results To Show</h2>}
+            </div>
             <button onClick={() => setShowModal(false)}>Close</button>
             </div>
         </div>
+        </div>
         )
         }
-        <h1>Board</h1>
+
+        <main className='board'>
+        <h1 className="board">Board</h1>
+        <div className="board-list">
         {boardLoading ? (
             <h2>Loading...</h2>
         ) :
         urlArray.length == 0 ? (
             <h2>Empty</h2>
         )  : (urlArray.map((entry) => (
-        <div key ={entry[0]}>
-         <h2>{entry[3]} : {entry[4]} : {entry[18]}: {timeMath(servTime,entry[5])}</h2>
+        <div className="board-entry" key ={entry[0]}>
+         <h2>{entry[3]} : {entry[4]} : {entry[20]}: {timeMath(servTime,entry[5])}</h2>
          </div>
         )))}
+         </div>
+         </main>
+        </div>
 
     </div>);
 }
