@@ -65,11 +65,9 @@ APARTMENT_CONSTRAINTS={
     "max_sqft": 4000,
     "min_rent": 300,
     "max_rent": 7000,
-    "min_beds": 0.0,
-    "max_beds": 3,
-    "min_baths": 0.5,
-    "max_baths": 4.0,
-    "move_in": datetime.strptime('2025-10-22', '%Y-%m-%d').date()
+    "beds": 0,
+    "baths": 0.5,
+    "move_in": datetime.strptime('2025-11-22', '%Y-%m-%d').date()
 }
 
 #Default weights
@@ -83,6 +81,8 @@ WEIGHTS={
 }
 
 link_count = 0
+
+batch_prefs = {}
 
 PRICE_SCALE = APARTMENT_CONSTRAINTS["max_rent"]
 SQFT_SCALE = max(0.2*APARTMENT_CONSTRAINTS["min_sqft"],150)
@@ -99,10 +99,10 @@ class LinkOut(BaseModel):
     status: str
     created_at: datetime
 class Preferences(BaseModel):
-    minPrice: int
-    maxPrice: int
-    minSqft: int
-    maxSqft: int
+    min_rent: int
+    max_rent: int
+    min_sqft: int
+    max_sqft: int
     beds: int
     baths: int
 
@@ -239,21 +239,25 @@ def score_unit(unit_price, unit_sqft, unit_avail):
     return WEIGHTS["w_price"]*price_u + WEIGHTS["w_sqft"]*sqft_u + WEIGHTS["w_flags"]*flags_u + WEIGHTS["w_avail"]*avail_u
 
 #Function intakes all units list and dictionary of floor plans to minimze the units to ones that fit insde user constaints (ie. correct num beds, sq ft, price etc)
-def filter_units(floor_plans: Dict[str, FloorPlan], units: List[Unit], title):
+def filter_units(floor_plans: Dict[str, FloorPlan], units: List[Unit], title, user_preferences):
     filtered_units_final = []
-
+    if not user_preferences:
+        user_preferences = APARTMENT_CONSTRAINTS
+   
     for unit in units:
         plan = floor_plans[unit.plan_name_ref] if unit.plan_name_ref in floor_plans else None
 
         #checks if date is present, Turn date into usable datetime obj for math
         if (unit.availability_date is not None) and type(unit.availability_date) == str:
             unit.availability_date = datetime.strptime(unit.availability_date, '%Y-%m-%d').date()
-
+       # print(((unit.price is not None) and APARTMENT_CONSTRAINTS["min_rent"]<=unit.price<=APARTMENT_CONSTRAINTS["max_rent"])) 
+       # print(((unit.sqft is not None) and APARTMENT_CONSTRAINTS["min_sqft"]<=unit.sqft<= APARTMENT_CONSTRAINTS["max_sqft"]))
+        #print( ((unit.availability_date is not None) and (APARTMENT_CONSTRAINTS["move_in"]>= unit.availability_date)))
         #Check if unit and plan are fully populated, and important factors fall within constraints
-        if (plan and ((unit.price is not None) and APARTMENT_CONSTRAINTS["min_rent"]<=unit.price<=APARTMENT_CONSTRAINTS["max_rent"]) 
-            and ((unit.sqft is not None) and APARTMENT_CONSTRAINTS["min_sqft"]<=unit.sqft<= APARTMENT_CONSTRAINTS["max_sqft"])
-            and ((plan.beds is not None) and (APARTMENT_CONSTRAINTS["min_beds"]<=plan.beds<= APARTMENT_CONSTRAINTS["max_beds"]))
-            and ((plan.baths is not None) and APARTMENT_CONSTRAINTS["min_baths"]<=plan.baths<= APARTMENT_CONSTRAINTS["max_baths"])
+        if (plan and ((unit.price is not None) and user_preferences["min_rent"]<=unit.price<=user_preferences["max_rent"]) 
+            and ((unit.sqft is not None) and user_preferences["min_sqft"]<=unit.sqft<= user_preferences["max_sqft"])
+            and ((plan.beds is not None) and (user_preferences["beds"]<=plan.beds))
+            and ((plan.baths is not None) and user_preferences["baths"]<=plan.baths)
             and ((unit.availability_date is not None) and (APARTMENT_CONSTRAINTS["move_in"]>= unit.availability_date))):
             unit_score = score_unit(unit.price, unit.sqft, unit.availability_date)
             if unit_score<0 or unit_score>1:
@@ -264,7 +268,7 @@ def filter_units(floor_plans: Dict[str, FloorPlan], units: List[Unit], title):
     return filtered_units_final
 
 
-def extract_Apartments_Dot_Com_Json(json):
+def extract_Apartments_Dot_Com_Json(json, user_preferences):
     #Error check:
     if not json: 
         print("Error: No Json")
@@ -277,15 +281,11 @@ def extract_Apartments_Dot_Com_Json(json):
     obj = json["objects"][0]
     items = obj["items"]
 
-    #set to dedupe
-    seen = set()
-
     #Dictionary
     floor_plans = {}
 
     #Use apartment.com parser to get lists of floor plans and units
     plans, units, report = parse_apartments_items(items)
-    
     #Iterate through floor plans and add to dictionary 
     for plan in plans:
         if plan.plan_name and plan.plan_name not in floor_plans:
@@ -294,8 +294,9 @@ def extract_Apartments_Dot_Com_Json(json):
     #print the title of the current apartment complex
     #print(obj["title"]+"\n\n")
 
-    filtered_units = filter_units(floor_plans, units, obj['title'])
-
+    filtered_units = filter_units(floor_plans, units, obj['title'], user_preferences)
+    if units and not filtered_units:
+        return {"error": "No Apartments Fit Your Preferences"}
     return filtered_units
 masterList = []
 #keep track of links to process
@@ -321,7 +322,10 @@ async def parserLoop():
         #call func for list of db items who are queued
         queuedItems = get_queue()
         for i in range(min(5,len(queuedItems))):
+            #specific link submission and its information
             item = queuedItems[i]
+            #The json of preferences is stored at index 7, index it json load it to make it usable
+            prefs = json.loads(item[7])
             #update status to fetch
             update_status(item[0], Status.FETCHING.value,"")
 
@@ -337,7 +341,7 @@ async def parserLoop():
                 update_status(item[0],Status.ERROR.value, "DIffBot did not Parse")
 
             if Popular_Sites.APARTMENTS_DOT_COM.value in item[2]:
-                res = extract_Apartments_Dot_Com_Json(raw)
+                res = extract_Apartments_Dot_Com_Json(raw, prefs)
                 #If result is an array append it
                 #print(type(res)) USED TO TEST RETURN TYPE TO TRACK DOWN IF ERROR IS IN FILTER OR PARSER
                 if res and type(res) == list:

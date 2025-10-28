@@ -1,0 +1,387 @@
+/* =========================
+   Light Theme – Purple Accents
+   ========================= */
+
+/* Design tokens */
+:root{
+  --bg: #f7f8fb;           /* soft off-white page background */
+  --bg-elev: #ffffff;       /* cards, inputs */
+  --text: #1b2330;          /* primary text (slightly cool dark) */
+  --text-muted: #667085;     /* labels, help text */
+  --border: #e6e8ee;         /* subtle borders */
+  --shadow-sm: 0 1px 2px rgba(16,24,40,.06);
+  --shadow-md: 0 8px 24px rgba(16,24,40,.08);
+
+  /* Purple accent */
+  --accent: #7c3aed;         /* primary purple */
+  --accent-hover: #6d28d9;   /* hover */
+  --accent-contrast: #ffffff;
+  --ring: 0 0 0 3px rgba(124,58,237,.25);
+
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius: 16px;
+}
+
+/* Base */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container {
+  max-width: 1000px;
+  margin: 56px auto;
+  padding: 0 20px;
+}
+
+/* Typography */
+.page-title{
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+
+.subtitle{
+  color: var(--text-muted);
+  margin: 0 0 28px;
+}
+
+/* Card */
+.card{
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+}
+
+.card + .card{ margin-top: 18px; }
+
+.card-header{
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card-title{ font-weight: 650; font-size: 18px; }
+
+/* Form layout */
+form{ width: 100%; }
+
+.form-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+/*text input layout*/
+.input-large {
+  width: 480px;                   /* adjust for your layout */
+  height: 52px;                   /* good balance of height */
+  padding: 0 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #111827;
+  transition: all 0.15s ease;
+}
+
+.input-large:focus {
+  border-color: #7c3aed;          /* your purple accent */
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+  outline: none;
+}
+
+
+@media (max-width: 640px){
+  .form-grid{ grid-template-columns: 1fr; }
+}
+
+.form-row{ display: flex; flex-direction: column; gap: 6px; }
+
+label{ font-size: 13px; color: var(--text-muted); }
+
+/* Inputs */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea{
+  width: 100%;
+  appearance: none;
+  background: var(--bg-elev);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+input::placeholder{ color: #9aa3b2; }
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color: var(--accent);
+  box-shadow: var(--ring);
+}
+
+/* Checkbox inline helper */
+.inline{ display: flex; align-items: center; gap: 10px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: transform .05s ease, box-shadow .2s ease, background .15s ease, border-color .15s ease, color .15s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Primary button (solid purple) */
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: transparent;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+/* Ghost / secondary (neutral transparent) */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+/* Accent outline button (purple border + hover fill) */
+.btn-accent {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-xs);
+  font-weight: 600;
+  padding: 10px 18px;
+  transition: all 0.2s ease;
+}
+
+.btn-accent:hover {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+/* Text-style purple button (for subtle actions) */
+.btn-text {
+  background: transparent;
+  color: var(--accent);
+  border: none;
+  font-weight: 600;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.btn-text:hover {
+  text-decoration: underline;
+  color: var(--accent-hover);
+}
+/* Actions row */
+.actions{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+
+/* Helper elements */
+.row{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+.spacer{ height: 14px; }
+.muted{ color: var(--text-muted); }
+.divider{
+  height: 1px; background: var(--border);
+  margin: 16px 0; border-radius: 1px;
+}
+
+/* Table (for results) */
+.table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+.table th, .table td{ padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.table thead th{
+  text-align: left;
+  background: #f3f5fb; /* faint purple-tinted header */
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.table tbody tr:hover{
+  background: #f6f2ff; /* very light purple hover */
+}
+
+/* Results Modal */
+.modal {
+  position: fixed;              /* take it out of layout flow */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);  /* dimmed overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;                /* above everything else */
+}
+
+.modal-content {
+  background: var(--bg-elev);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+}
+
+/* Wrap everything */
+.board-wrap {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Fixed right-side preferences panel (doesn't push board down) */
+.prefs-panel {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 340px;                      /* adjust as needed */
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  z-index: 50;                        /* sits above board */
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  backdrop-filter: saturate(120%) blur(0px);
+}
+
+/* Main board area (under the panel) */
+.board {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  /* On wide screens, give the board room so content isn't obscured by the fixed panel */
+}
+
+/* Reserve space on wide screens so board content doesn't hide under the panel */
+@media (min-width: 1200px) {
+  .board { margin-right: 380px; }     /* panel width + spacing */
+}
+
+/* =========
+   Board UI
+   ========= */
+
+/* Title sits above entries with clear spacing */
+.board-title {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 16px;                   /* space between title and first entry */
+  color: var(--text);
+}
+
+/* Optional: wrap your entries list */
+.board-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                           /* vertical rhythm between entries */
+}
+
+/* Entry cards: slightly darker bg for separation */
+.board-entry {
+  background: #f2f2f7;                 /* soft gray card bg */
+  border: 1px solid #e0e0e5;
+  border-radius: 10px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+  transition: background .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+/* Hover with subtle purple tint to match your accent */
+.board-entry:hover {
+  background: #f6f2ff;                 /* very light purple tint */
+  border-color: #ddd6fe;               /* faint purple border */
+  box-shadow: 0 2px 6px rgba(124,58,237,0.10);
+}
+
+/* Optional: clickable entries */
+.board-entry.is-clickable { cursor: pointer; }
+
+/* Entry header/body helpers if you need them */
+.board-entry__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.board-entry__meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Focus visibility for accessibility */
+a, button, input, select, textarea{ outline: none; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+  box-shadow: var(--ring);
+  border-color: var(--accent);
+}
+
+/* Subtle entrance */
+.fade-in{ animation: fade .28s ease-out both; }
+@keyframes fade{
+  from{ opacity: 0; transform: translateY(4px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
