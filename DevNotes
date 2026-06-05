@@ -147,6 +147,11 @@ END OF DAY NOTES:
         END OF DAY: When user applies changes, they pass down values with click of analysis. In backend, all links that were pending at time of click get the same batch id and prefs that were passed down
 
         NEXT: figure out how to pass the preferences to ranker instead of globals, ensure that links in the same batch get ranked tg.
-        
 
+        END OF DAY: Set up a buch of ui ux stuff in css. Successfully pass down preferences and rank user apartments based on prefernces.
+        NEXT: Makre sure batches are ranked together (only an issue when >5 links at once). Make the results pop up less cramed/ messy, implement asi summary.
 
+        END OF DAY: added text entry box that tales typing of text to speach of what the user wants and passes it down tih the link submission
+        NEXT: 
+        Makre sure batches are ranked together (only an issue when >5 links at once). Make the results pop up less cramed/ messy, implement asi summary.
+        Make a submission button for the text box itself so theres no repeats
