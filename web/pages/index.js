@@ -67,15 +67,27 @@ function HomeContent(){
         setIsListening(!isListening)
     }
 
+    //Function to send the blurb of the users dream home to api
+    async function submitDream(){
+        try{
+            const response = await fetch("/api/userDream",{
+                method: "POST",
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({"blurb":text})
+            });
+        }catch(error){
+
+        }
+    }
     //send url to back end for storage
-    async function sendSubmission(url,input){
+    async function sendSubmission(url){
         //Run the back end on its own and enter the right url + endpoint
         setIsLoading(true)
         try{
         const response = await fetch("/api/link", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({"link":url,"text":input}),
+            body: JSON.stringify({"link":url}),
         });
         setMessage("Success: Link has been posted!")
         setMessageInfo("success")
@@ -103,7 +115,7 @@ function HomeContent(){
         const fd = new FormData(e.currentTarget);   
         const url = fd.get("url");
     
-        sendSubmission(url,text)
+        sendSubmission(url)
         //add url to setItems
         //Reset value for next url
         //setValue("");
@@ -147,6 +159,7 @@ function HomeContent(){
                 <button className="btn btn-accent"onClick={toggleListening}>
                     {isListening ? 'Stop':'Start'} Mic
                 </button>
+                <button className="btn btn-accent" onClick={submitDream}>Submit</button>
             </div>
             
             </div>
