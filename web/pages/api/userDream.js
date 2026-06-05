@@ -2,7 +2,7 @@
 // This page acts as a go between for the ui http submission and api
 
 const API_BASE = "http://127.0.0.1:8000"
-const TARGET = API_BASE + "/link"
+const TARGET = API_BASE + "/userDream"
   
 //Submission comes in as an OPTIONS header, with the request, method, and allows in it.
 export default async function handler(request, response){
@@ -16,17 +16,7 @@ export default async function handler(request, response){
     if (!body || typeof body !== "object") {
         return response.status(400).json({ detail: "Invalid JSON (api/link)" });
     }
-    // check to ensure right type and presence of url
-    const url = body.link;                                  
-    if (!url || typeof url !== "string") {
-        return response.status(400).json({ detail: "Field 'url' is required (api/link)" }); 
-    }
-
-    //check if url is valid url
-
-    if(!(url.startsWith("http://") || url.startsWith("https://"))){
-        return response.status(400).json({detail: "Not a valid http or https link (api/link)"});
-    }
+    const dream = body.blurb;
 
     // Try sending to api
 
@@ -34,7 +24,7 @@ export default async function handler(request, response){
         const servRes = await fetch(TARGET, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({url})
+        body: JSON.stringify(request.body)
     });
     const message = await servRes.json()
 

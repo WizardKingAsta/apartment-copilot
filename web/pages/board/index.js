@@ -1,5 +1,7 @@
 "use client"; //import use client to ensure client side (api route is server side which helsp prevent CORS error of direct API route from here)
 import React, {useState, useEffect, useRef} from 'react';
+import ReactMarkdown from 'react-markdown'
+
 //import Modal from 'react-modal'
 import {useRouter} from 'next/router';
 
@@ -86,7 +88,7 @@ export default function Board(){
     const pollInterval = useRef(null)
 
     // arr for the results from the analysis
-    const [resultsArray, setResultsArray] = useState([]);
+    const [results, setResults] = useState('');
 
     //Set up boolean to know whether or not to show modal
     const [showModal, setShowModal] = useState(false);
@@ -106,8 +108,8 @@ export default function Board(){
     const router = useRouter();
 
     useEffect(() => {
-        console.log("resultsArray updated:", resultsArray);
-      }, [resultsArray]);
+        console.log("results updated:", results);
+      }, [results]);
    //useEffect to load board data whens ite is opebed
     useEffect(()=>{
       
@@ -181,11 +183,11 @@ async function createPoll(){
 
         if('data' in info){
             console.log("here")
-            setResultsArray(info.data)
+            setResults(info.data)
             
 
         }else{
-            setResultsArray([])
+            setResults('')
         }
         setShowModal(true)
 
@@ -250,11 +252,13 @@ async function createPoll(){
                 style = {{background: 'white', padding:'2rem', borderRadius:'8px', maxWidth: '800px', maxHeight: '80vh', overflow:'auto'}}>
             <h2>Top 5 Results</h2>
             <div className='modal-content'>
-            {resultsArray.length >0 ?(resultsArray.map((rating) => (
+                <ReactMarkdown>{results}</ReactMarkdown>
+            {/*{resultsArray.length >0 ?(resultsArray.map((rating) => (
                 <div key = {rating[0]}>
                     <h2>Complex:{rating[0]} | Unit Number:{rating[1]} | Floor Plan: {rating[2]} | Rent:{rating[3]} | SqFt:{rating[4]} | Beds:{rating[5]} | Bath:{rating[6]} | Available:{rating[7]} | Score:{rating[8]}</h2>
                 </div>
             ))): <h2> No Results To Show</h2>}
+            */}
             </div>
             <button onClick={() => setShowModal(false)}>Close</button>
             </div>
