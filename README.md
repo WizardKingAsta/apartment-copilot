@@ -46,26 +46,22 @@ I built this project to help cut through the noisey apartment searching market a
 
 ## Architecture
 
-[Briefly explain how the app is structured.]
-
-Example:
-The frontend is built with [frontend framework] and communicates with a [backend framework] API. The backend handles [auth/business logic/data processing], while [database] stores [main types of data]. The application is deployed using [deployment platform].
+The frontend is built with React, I chose React because it provides a versatile and reactive UI. This takes in all the user info, and communicates with the FastAPI backend. The backend handles storing submitted links, parsing the apartment websites, cleaning the data, storing user preferences, and interacting with the ClaudeAPI to enable AI scoring. The SQLLITE DB stores the user links submissions to and statuses to persist across sessions. The application is currently run locally. 
 
 ---
-# Apartment Copilot (monorepo)
-- `web/` — Next.js frontend
-- `api/` — FastAPI backend
+## Local Development
 
-## Local Dev
-API:  (from `api/`) `uvicorn main:app --reload --port 8000`
-Web:  (from `web/`) `npm run dev` (or `pnpm dev`, `yarn dev`)
+This project depends on external API credentials that are not included in the repository:
 
-## Env
-Copy `.env.example` → put values in `api/.env` and `web/.env.local`.
+- DiffBot Token
+- Claude API Key
 
-## API
-returns up the top 5 data or {error: no results}
+Because these credentials are private, the full application cannot be run locally without creating your own API keys.
 
-Returns up data in the form: 
+To run the project locally, create a `.env` file with the following variables:
+
+
+DiffBot =your_diffBot_token
+CLAUDE_API_KEY=your_claude_api_key
 ```text
 
