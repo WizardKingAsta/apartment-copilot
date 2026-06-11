@@ -7,7 +7,7 @@ Web app to aid in your apartment search. Load in 5-10 urls for apartments you ar
 ## Demo
 
 GitHub Repo: (https://github.com/WizardKingAsta/apartment-copilot)  
-Video Demo: [Link here, optional]
+Video Demo: (https://www.youtube.com/watch?v=fKrI2kUqmok)
 
 ---
 
