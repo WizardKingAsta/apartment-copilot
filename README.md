@@ -10,3 +10,8 @@ Web:  (from `web/`) `npm run dev` (or `pnpm dev`, `yarn dev`)
 
 ## Env
 Copy `.env.example` → put values in `api/.env` and `web/.env.local`.
+
+## API
+returns up the top 5 data or {error: no results}
+
+Returns up data in the form: 

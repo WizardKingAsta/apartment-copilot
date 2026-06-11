@@ -12,3 +12,6 @@ api/*.pyc
 
 # OS
 .DS_Store
+
+#Local Keys
+.env

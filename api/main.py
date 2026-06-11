@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from pydantic import BaseModel,HttpUrl
 from collections import deque
@@ -11,6 +12,8 @@ from datetime import datetime, timezone
 from uuid import UUID, uuid4
 from furl import furl
 from enum import Enum
+from dotenv import load_dotenv
+from anthropic import Anthropic
 import numpy as np
 import requests
 
@@ -38,15 +41,17 @@ class RateLimiter:
 
 
 app = FastAPI()
+load_dotenv()
 
-TOKEN = '074c386a7d7b996bef0f1fa190f7f24b'
-DIFF_BOT_API=f"https://api.diffbot.com/v3/list?token={TOKEN}"
+TOKEN = os.getenv("DIFF_BOT_TOKEN")
+DIFF_BOT_API= os.getenv("DIFF_BOT_API")
+
 
 #Create sqllite database
 conn = sqlite3.connect('copilot.db')
 cursor = conn.cursor()
 
-
+client = Anthropic(api_key=os.getenv("CLAUDE_API_KEY"))
 
 #Status enum
 class Status(Enum):
@@ -64,11 +69,13 @@ APARTMENT_CONSTRAINTS={
     "min_sqft": 0,
     "max_sqft": 4000,
     "min_rent": 300,
-    "max_rent": 7000,
-    "beds": 0,
-    "baths": 0.5,
-    "move_in": datetime.strptime('2025-11-22', '%Y-%m-%d').date()
+    "max_rent": 10000,
+    "beds": 1,
+    "baths": 1,
+    "move_in": datetime.strptime('2026-11-22', '%Y-%m-%d').date()
 }
+
+USER_SPOKEN_PREFERNCES=""
 
 #Default weights
 WEIGHTS={ 
@@ -105,7 +112,9 @@ class Preferences(BaseModel):
     max_sqft: int
     beds: int
     baths: int
-
+# Payload time for the users written (or spoken) apartment preferences
+class DreamBlurb(BaseModel):
+    blurb: str
 
 #Retuyrns health of the app
 @app.get("/health")
@@ -171,6 +180,12 @@ async def create_link(payload: LinkIn):
         raise HTTPException(status_code= 409, detail="Link Already Submitted!")
 
     return {"ok":True}
+
+@app.post("/userDream", status_code=201)
+async def create_user_dream(payload: DreamBlurb):
+    blurb = str(payload.blurb)
+    USER_SPOKEN_PREFERNCES = blurb
+    return 
 
 @app.get("/queue")
 async def getDb():
@@ -329,16 +344,30 @@ async def parserLoop():
             #update status to fetch
             update_status(item[0], Status.FETCHING.value,"")
 
-
             #call diff bot api for link style parse
-            #response = requests.get(f"{DIFF_BOT_API}&url={item[2]}&fields=items(summary,mortar-wrapper,unitColumn,pricingColumn,sqftColumn,availableColumn,availableColumnInnerContainer,title,date)")
-            #raw = response.json()
+            fields = "items(summary,mortar-wrapper,unitColumn,pricingColumn,sqftColumn,availableColumn,availableColumnInnerContainer,title,date)"
+
+            response = requests.get(
+                DIFF_BOT_API,
+                params={
+                    "token": TOKEN,
+                    "url":item[2],
+                    #"fields":fields,
+                    "render":"true",
+                    #"timeout":"30000",
+                }, timeout=60,
+            )
+    
+            raw = response.json()
+            print("Status code:", response.status_code)
+            print(response.text)
+            print("URL being scraped:", item[2])
 
             #Call async function to get data while allowing api calls
-            raw = await get_parser_data(item[2])
-
+            #raw = await get_parser_data(item[2])
+           
             if not raw:
-                update_status(item[0],Status.ERROR.value, "DIffBot did not Parse")
+                update_status(item[0],Status.ERROR.value, "DiffBot did not Parse")
 
             if Popular_Sites.APARTMENTS_DOT_COM.value in item[2]:
                 res = extract_Apartments_Dot_Com_Json(raw, prefs)
@@ -368,7 +397,9 @@ async def parserLoop():
                 #Update status to parsed if no issues arised
                 update_status(item[0],Status.PARSED.value, "")
             else:
-                update_status(item[0],Status.ERROR.value, "Site Not Supported!")
+                update_status(item[0],Status.ERROR.value, "Site Not Supported, Using AI")
+                masterList.append(raw)
+                print(masterList)
             
 
         #sleep an wait for more work
@@ -383,6 +414,13 @@ async def analyze(payload: Preferences):
     batch = str(uuid4())
     #turn Preferences object to dict for json dumping
     preference_json = json.dumps(payload.dict())
+    pref_list = json.loads(preference_json)
+
+    #Adjust global preferences
+    for key, value in pref_list.items():
+        #if value>0:
+        APARTMENT_CONSTRAINTS[key] = value
+
     #Set all items in db to queued
     cursor.execute('''
         UPDATE linksubmissions 
@@ -398,25 +436,60 @@ async def analyze(payload: Preferences):
     masterList = []
     return {"status":"queued", "count":count}
 
-#Get the actial ranked list
+def claude_chat(apartments, prefs, submitterDream):
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens = 1024,
+        messages = [
+            {
+                "role":"user",
+                "content":f"""
+                Create a top 5 ranking of the apartments in this list. You will be given numerical preferences: bedrooms, min rent, max rent, min square feet, max square feet, bathrooms. You 
+                may also be given a text description written by the submitter. If that is non empty, consider those features and preferences in the ranking. Do not make anything up. In the top 5,
+                assign each apartment a numerical score between 0 and 100, as well as provide 1 sentence as to why it got the place it did.
+
+                Apartments:
+                {apartments}
+                Numerical Preferences:
+                {prefs}
+                Text Preference:
+                {submitterDream}
+                """
+            }
+        ],
+    )
+    return message.content[0].text
+
+#Get the actual ranked list
 @app.get("/results")
 def return_results():
     global masterList
     refined_list = []
     results = []
+
+    print(("LIST",masterList))
     print(len(masterList))
+
+    #HERE
     if len(masterList)>0:
-        masterList= sorted(masterList, key=lambda x: x[2], reverse=True)
-        if len(masterList)<5:
-            refined_list=masterList
-        else:
-            refined_list = masterList[0:5]
+        #masterList= sorted(masterList, key=lambda x: x[2], reverse=True)
+         #AI Response
+        ai_response = claude_chat(masterList,APARTMENT_CONSTRAINTS, USER_SPOKEN_PREFERNCES)
+        print(ai_response)
+       # if len(masterList)<5:
+          #  refined_list=masterList
+       # else:
+           # refined_list = masterList[0:5]
+       
+
         #Extract only useful info
-        for unit,fp,score,title in refined_list:
-            results.append([str(title), str(unit.unit_id), str(unit.plan_name_ref), int(unit.price), int(unit.sqft), float(fp.beds), float(fp.baths), str(unit.availability_date), float(score)])
-        return {"data":results}
+        #for unit,fp,score,title in refined_list:
+            #results.append([str(title), str(unit.unit_id), str(unit.plan_name_ref), int(unit.price), int(unit.sqft), float(fp.beds), float(fp.baths), str(unit.availability_date), float(score)])
+        return {"data":ai_response}
     return {"Error":"No Results to show"}
 
 # return format [Complex Name, Unit, Floorplan, Price, sqft, bed, bath, avail_date, score]
 
-
+# Shape: 
+#fetch response from claude api with all the apartments at once
+#return to front end
