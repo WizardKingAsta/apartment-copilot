@@ -13,10 +13,9 @@ from uuid import UUID, uuid4
 from furl import furl
 from enum import Enum
 from dotenv import load_dotenv
-from anthropic import Anthropic
+from anthropic import AsyncAnthropic, Anthropic
 import numpy as np
 import requests
-
 from adapters.apartments_dot_com import parse_apartments_items
 from adapters.schema import FloorPlan, Unit, ParserResult
 
@@ -51,7 +50,7 @@ DIFF_BOT_API= os.getenv("DIFF_BOT_API")
 conn = sqlite3.connect('copilot.db')
 cursor = conn.cursor()
 
-client = Anthropic(api_key=os.getenv("CLAUDE_API_KEY"))
+client = AsyncAnthropic(api_key=os.getenv("CLAUDE_API_KEY"))
 
 #Status enum
 class Status(Enum):
@@ -347,7 +346,9 @@ async def parserLoop():
             #call diff bot api for link style parse
             fields = "items(summary,mortar-wrapper,unitColumn,pricingColumn,sqftColumn,availableColumn,availableColumnInnerContainer,title,date)"
 
-            response = requests.get(
+            async with aiohttp.ClientSession() as session:
+                async with session.get(
+            #response = requests.get(
                 DIFF_BOT_API,
                 params={
                     "token": TOKEN,
@@ -355,13 +356,11 @@ async def parserLoop():
                     #"fields":fields,
                     "render":"true",
                     #"timeout":"30000",
-                }, timeout=60,
-            )
-    
-            raw = response.json()
-            print("Status code:", response.status_code)
-            print(response.text)
-            print("URL being scraped:", item[2])
+                }, timeout=aiohttp.ClientTimeout(total=60),
+            ) as response:
+                    raw = await response.json()
+                    print(response.text)
+                    print("URL being scraped:", item[2])
 
             #Call async function to get data while allowing api calls
             #raw = await get_parser_data(item[2])
@@ -392,12 +391,8 @@ async def parserLoop():
                     for i,l in enumerate(masterList):
                         print(f"{i}: {l}\n\n")
                 
-            elif Popular_Sites.APARTMENT_LIST.value in item[2]:
-                print(normalize_Apartment_List(raw))
-                #Update status to parsed if no issues arised
-                update_status(item[0],Status.PARSED.value, "")
             else:
-                update_status(item[0],Status.ERROR.value, "Site Not Supported, Using AI")
+                update_status(item[0],Status.PARSED.value, "")
                 masterList.append(raw)
                 print(masterList)
             
@@ -436,8 +431,8 @@ async def analyze(payload: Preferences):
     masterList = []
     return {"status":"queued", "count":count}
 
-def claude_chat(apartments, prefs, submitterDream):
-    message = client.messages.create(
+async def claude_chat(apartments, prefs, submitterDream):
+    message = await client.messages.create(
         model="claude-haiku-4-5-20251001",
         max_tokens = 1024,
         messages = [
@@ -446,7 +441,9 @@ def claude_chat(apartments, prefs, submitterDream):
                 "content":f"""
                 Create a top 5 ranking of the apartments in this list. You will be given numerical preferences: bedrooms, min rent, max rent, min square feet, max square feet, bathrooms. You 
                 may also be given a text description written by the submitter. If that is non empty, consider those features and preferences in the ranking. Do not make anything up. In the top 5,
-                assign each apartment a numerical score between 0 and 100, as well as provide 1 sentence as to why it got the place it did.
+                assign each apartment a numerical score between 0 and 100, as well as provide 1 sentence as to why it got the place it did. If there was a description written, try to include specific mentions of things in that
+                apartment unit in the sentence that call back to the description if it makes sense. Finally, in the apartment info for ranking also include what complex it belongs to. If there is more than 1
+                apartment complex in the unit options, try to have a mix in the top 5. If the best ones are from a single complex then that is okay, however try to not have it be 100% from one complex if possible. Even if you must mix, keep ordering within the top 5 optimal.
 
                 Apartments:
                 {apartments}
@@ -462,7 +459,7 @@ def claude_chat(apartments, prefs, submitterDream):
 
 #Get the actual ranked list
 @app.get("/results")
-def return_results():
+async def return_results():
     global masterList
     refined_list = []
     results = []
@@ -474,7 +471,7 @@ def return_results():
     if len(masterList)>0:
         #masterList= sorted(masterList, key=lambda x: x[2], reverse=True)
          #AI Response
-        ai_response = claude_chat(masterList,APARTMENT_CONSTRAINTS, USER_SPOKEN_PREFERNCES)
+        ai_response = await claude_chat(masterList,APARTMENT_CONSTRAINTS, USER_SPOKEN_PREFERNCES)
         print(ai_response)
        # if len(masterList)<5:
           #  refined_list=masterList
