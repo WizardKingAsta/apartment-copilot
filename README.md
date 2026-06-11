@@ -9,15 +9,9 @@ Web app to aid in your apartment search. Load in 5-10 urls for apartments you ar
 GitHub Repo: (https://github.com/WizardKingAsta/apartment-copilot)  
 Video Demo: [Link here, optional]
 
-### Screenshots
-
-![Screenshot description](./path-to-screenshot.png)
-
 ---
 
 ## Overview
-
-[Write 2–4 sentences explaining the project.]
 
 This project was built to solve the headache that comes with comparing endless apartment listings. 
 Users can upload links of apartments they like, fill in numerical apartment preferences, verbally describe their dream apartment, and analyze all their options.  
