@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useRouter } from 'next/router';
 
 
+
 export default function Home(){
     return(
             <HomeContent />
@@ -127,11 +128,41 @@ function HomeContent(){
     return (
         <div style={{
         display: 'flex',
+        flexDirection:'column',
         justifyContent: 'center', // centers horizontally
         alignItems: 'center',     // centers vertically
-        height: '100vh',          // take full screen height
+        height: '75vh',          // take full screen height
         width: '100%', 
         transform: 'translateY(-10%)',   }}>
+           <h1
+  style={{
+    marginBottom: '32px',
+    color: '#7c3aed',
+    fontSize: 'clamp(44px, 8vw, 84px)',
+    fontWeight: '700',
+    textAlign: 'center',
+    letterSpacing: '-1.5px',
+    lineHeight: '1',
+    fontFamily: 'Georgia, "Times New Roman", serif',
+    opacity: 0.92,
+    textShadow: '0 6px 18px rgba(124, 58, 237, 0.22)',
+  }}
+>
+  Apartment Copilot
+</h1>
+                <p
+                    style={{
+                        marginTop: '-18px',
+                        marginBottom: '200px',
+                        color: '#4c1d95',
+                        fontSize: '16px',
+                        fontWeight: '700',
+                        letterSpacing: '3px',
+                        textTransform: 'uppercase',
+                    }}
+                    >
+                    Find your dream apartment faster
+                </p>
             <div style={{ width: '100%', maxWidth: 620 }}>
             {message && (
                 <div className={`popup ${messageInfo === 'success' ? 'Success!' : 'Error!'}`}>
